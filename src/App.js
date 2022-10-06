@@ -1,5 +1,5 @@
-import "./App.css";
-import { useState } from "react";
+import './App.scss';
+import { useState } from 'react';
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
