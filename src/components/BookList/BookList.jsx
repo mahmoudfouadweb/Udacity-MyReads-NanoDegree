@@ -1,6 +1,5 @@
 import React from 'react';
 import BookShelf from '../BookShelf/BookShelf';
-import ShelfChanger from '../ShelfChanger/ShelfChanger';
 
 const DUMMY_DATA_CurrentlyReading = [
   {

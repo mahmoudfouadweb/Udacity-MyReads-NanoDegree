@@ -50,7 +50,7 @@ const Search = ({ toggleShowSearchButton }) => {
       </div> */}
       <div className="search-books-results">
         <ol className="books-grid">
-          {searchContent && <Card books={searchItem} />}
+          {searchContent && <Card book={searchItem} />}
         </ol>
       </div>
     </div>

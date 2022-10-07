@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../Card/Card';
-import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './bookShelf.module.scss';
 
 const BookShelf = props => {
