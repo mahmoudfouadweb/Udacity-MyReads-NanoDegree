@@ -21,12 +21,10 @@ function App() {
           </div>
           <div className="list-books-content">
             <div>
-                <div className="bookshelf">
-                  
+              <div className="bookshelf">
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      
+                  <ol className="books-grid">
                     <li>
                       <div className="book">
                         <div className="book-top">
@@ -63,12 +61,9 @@ function App() {
                         <div className="book-title">Ender's Game</div>
                         <div className="book-authors">Orson Scott Card</div>
                       </div>
-                      </li>
-                      
-                      
+                    </li>
                   </ol>
-                  </div>
-                  
+                </div>
               </div>
 
               <div className="bookshelf">
@@ -186,7 +181,9 @@ function App() {
             </div>
           </div>
           <div className="open-search">
-            <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
+            <a href="#" onClick={() => setShowSearchpage(!showSearchPage)}>
+              Add a book
+            </a>
           </div>
         </div>
       )}
