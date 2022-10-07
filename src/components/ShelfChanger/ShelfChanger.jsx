@@ -12,7 +12,9 @@ const ShelfChanger = props => {
     setIsChange(current);
     props.onChange(isChange);
   };
+  
   console.log(isChange);
+  
   return (
     <div className="book-shelf-changer">
       <select onClick={e => changeStatusHandler(e)}>
