@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BookShelf from '../BookShelf/BookShelf';
 
 const DUMMY_DATA_CurrentlyReading = [
@@ -36,6 +36,22 @@ const DUMMY_DATA_Read = [
 ];
 
 const BookList = ({ toggleShowSearchButton }) => {
+  const [isCurrentlyReading, setIsCurrentlyReading] = useState([]);
+  const [isWantToRead, setIsWantToRead] = useState([]);
+  const [isRead, setIsRead] = useState([]);
+
+  const bookChangeHandler = isChange => {
+    if (isChange === 'none') {
+      console.log('none');
+    } else if (isChange === 'currentlyReading') {
+      console.log('Currently Reading');
+    } else if (isChange === 'wantToRead') {
+      console.log('Want to Read');
+    } else if (isChange === 'read') {
+      console.log('Read');
+    }
+  };
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -47,9 +63,18 @@ const BookList = ({ toggleShowSearchButton }) => {
           <BookShelf
             status={DUMMY_DATA_CurrentlyReading}
             title={'Currently Reading'}
+            onChange={bookChangeHandler}
           />
-          <BookShelf status={DUMMY_DATA_WantToRead} title={'Want to Read'} />
-          <BookShelf status={DUMMY_DATA_Read} title={'Read'} />
+          <BookShelf
+            status={DUMMY_DATA_WantToRead}
+            title={'Want to Read'}
+            onChange={bookChangeHandler}
+          />
+          <BookShelf
+            status={DUMMY_DATA_Read}
+            title={'Read'}
+            onChange={bookChangeHandler}
+          />
         </div>
       </div>
       <div className="open-search">

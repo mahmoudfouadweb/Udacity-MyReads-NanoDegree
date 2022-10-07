@@ -3,7 +3,9 @@ import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
 const Card = props => {
+  
   console.log(props.book);
+  
   const render = props.book.map(item => (
     <li key={item.id}>
       <div className="book">
