@@ -2,14 +2,12 @@ import React from 'react';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './bookShelf.module.scss';
 
-const BookShelf = (props) => {
+const BookShelf = props => {
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">Currently Reading</h2>
+      <h2 className="bookshelf-title">{props.title}Currently Reading</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-
-
           <li>
             <div className="book">
               <div className="book-top">
