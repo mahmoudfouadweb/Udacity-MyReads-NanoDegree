@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { search } from '../../BooksAPI';
+import Card from '../Card/Card';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 // import classes from './search.module.scss';
 
@@ -18,25 +19,6 @@ const Search = ({ toggleShowSearchButton }) => {
   console.log(searchContent);
   console.log(searchItem);
 
-  const searchCard = searchItem.map(item => (
-    <li key={item.id}>
-      <div className="book">
-        <div className="book-top">
-          <div
-            className="book-cover"
-            style={{
-              width: 128,
-              height: 193,
-              backgroundImage: `url(${item.imageLinks.thumbnail})`,
-            }}
-          ></div>
-          <ShelfChanger />
-        </div>
-        <div className="book-title">{item.title}</div>
-        <div className="book-authors">{item.authors}</div>
-      </div>
-    </li>
-  ));
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -57,7 +39,9 @@ const Search = ({ toggleShowSearchButton }) => {
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid">{searchContent && searchCard}</ol>
+        <ol className="books-grid">
+          {searchContent && <Card onSearch={searchItem} />}
+        </ol>
       </div>
     </div>
   );
