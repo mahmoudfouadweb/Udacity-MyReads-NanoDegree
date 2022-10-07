@@ -1,14 +1,14 @@
 import React from 'react';
-import classes from './search.module.scss';
+// import classes from './search.module.scss';
 
-const Search = () => {
+const Search = ({ toggleShowSearchButton }) => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
         <a
           href="#"
           className="close-search"
-          // onClick={() => setShowSearchpage(!showSearchPage)}
+          onClick={() => toggleShowSearchButton(!true)}
         >
           Close
         </a>

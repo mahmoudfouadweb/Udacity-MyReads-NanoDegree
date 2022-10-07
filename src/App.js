@@ -1,32 +1,18 @@
 import './App.scss';
 import { useState } from 'react';
+import Search from './components/Search/Search';
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
 
+  const searchHandler = close => {
+    setShowSearchpage(close);
+  };
+
   return (
     <div className="app">
       {showSearchPage ? (
-        <div className="search-books">
-          <div className="search-books-bar">
-            <a
-              href="#"
-              className="close-search"
-              onClick={() => setShowSearchpage(!showSearchPage)}
-            >
-              Close
-            </a>
-            <div className="search-books-input-wrapper">
-              <input
-                type="text"
-                placeholder="Search by title, author, or ISBN"
-              />
-            </div>
-          </div>
-          <div className="search-books-results">
-            <ol className="books-grid"></ol>
-          </div>
-        </div>
+        <Search toggleShowSearchButton={searchHandler} />
       ) : (
         <div className="list-books">
           <div className="list-books-title">
@@ -37,9 +23,7 @@ function App() {
               <div className="bookshelf">
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
-                    <ol className="books-grid">
-                      
-                      
+                  <ol className="books-grid">
                     <li>
                       <div className="book">
                         <div className="book-top">
@@ -69,9 +53,8 @@ function App() {
                         <div className="book-title">To Kill a Mockingbird</div>
                         <div className="book-authors">Harper Lee</div>
                       </div>
-                      </li>
-                      
-                      
+                    </li>
+
                     <li>
                       <div className="book">
                         <div className="book-top">
@@ -104,8 +87,8 @@ function App() {
                     </li>
                   </ol>
                 </div>
-                </div>
-                
+              </div>
+
               <div className="bookshelf">
                 <h2 className="bookshelf-title">Want to Read</h2>
                 <div className="bookshelf-books">
@@ -175,9 +158,7 @@ function App() {
                   </ol>
                 </div>
               </div>
-              
-                
-                
+
               <div className="bookshelf">
                 <h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
@@ -212,8 +193,7 @@ function App() {
                         <div className="book-authors">J.R.R. Tolkien</div>
                       </div>
                     </li>
-                    
-                      
+
                     <li>
                       <div className="book">
                         <div className="book-top">
