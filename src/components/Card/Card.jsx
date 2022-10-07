@@ -7,8 +7,8 @@ const Card = props => {
 
   console.log(props.book);
 
-  const render = props.book.map(item => (
-    <li key={item.id}>
+  const render = (
+    <li key={props.id}>
       <div className="book">
         <div className="book-top">
           <div
@@ -16,16 +16,17 @@ const Card = props => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${item.imageLinks.thumbnail})`,
+              backgroundImage: `url(${props.imageLinks.thumbnail})`,
             }}
           ></div>
           <ShelfChanger onChange={props.onChange} />
         </div>
-        <div className="book-title">{item.title}</div>
-        <div className="book-authors">{item.authors}</div>
+        <div className="book-title">{props.title}</div>
+        <div className="book-authors">{props.authors}</div>
       </div>
     </li>
-  ));
+  );
+
   return <React.Fragment>{render}</React.Fragment>;
 };
 

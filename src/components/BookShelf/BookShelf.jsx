@@ -9,7 +9,9 @@ const BookShelf = props => {
       <h2 className="bookshelf-title">{props.title}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <Card book={props.status} onChange={props.onChange} />
+          props.book.map(item => (
+          <Card  onChange={props.onChange} />
+          ));
         </ol>
       </div>
     </div>

@@ -41,6 +41,7 @@ const BookList = ({ toggleShowSearchButton }) => {
   const [isRead, setIsRead] = useState([]);
 
   const bookChangeHandler = isChange => {
+    console.log('THE MAIN FUNCTION');
     if (isChange === 'none') {
       console.log('none');
     } else if (isChange === 'currentlyReading') {
@@ -61,17 +62,17 @@ const BookList = ({ toggleShowSearchButton }) => {
       <div className="list-books-content">
         <div>
           <BookShelf
-            status={DUMMY_DATA_CurrentlyReading}
+            book={DUMMY_DATA_CurrentlyReading}
             title={'Currently Reading'}
             onChange={bookChangeHandler}
           />
           <BookShelf
-            status={DUMMY_DATA_WantToRead}
+            book={DUMMY_DATA_WantToRead}
             title={'Want to Read'}
             onChange={bookChangeHandler}
           />
           <BookShelf
-            status={DUMMY_DATA_Read}
+            book={DUMMY_DATA_Read}
             title={'Read'}
             onChange={bookChangeHandler}
           />

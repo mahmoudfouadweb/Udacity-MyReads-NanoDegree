@@ -8,7 +8,9 @@ const ShelfChanger = props => {
 
   const changeStatusHandler = e => {
     const current = e.target.value;
+    // console.log(e);
     setIsChange(current);
+    props.onChange(isChange);
   };
   console.log(isChange);
   return (
