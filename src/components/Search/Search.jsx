@@ -22,6 +22,9 @@ const Search = ({ toggleShowSearchButton }) => {
       document.querySelector('.search-book-input').focus();
     }
   }, [searchContent]);
+
+  console.log(searchItem);
+
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -47,7 +50,7 @@ const Search = ({ toggleShowSearchButton }) => {
       </div> */}
       <div className="search-books-results">
         <ol className="books-grid">
-          {searchContent && <Card onSearch={searchItem} />}
+          {searchContent && <Card books={searchItem} />}
         </ol>
       </div>
     </div>
