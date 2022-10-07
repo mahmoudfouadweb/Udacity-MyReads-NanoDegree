@@ -3,15 +3,21 @@ import Card from '../Card/Card';
 import classes from './bookShelf.module.scss';
 
 const BookShelf = props => {
-  console.log('BookShelf', props.onChange);
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.title}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          props.book.map(item => (
-          <Card  onChange={props.onChange} />
-          ));
+          {props.book.map(item => (
+            <Card
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              thumbnail={item.imageLinks.thumbnail}
+              authors={item.authors}
+              onChange={props.onChange}
+            />
+          ))}
         </ol>
       </div>
     </div>

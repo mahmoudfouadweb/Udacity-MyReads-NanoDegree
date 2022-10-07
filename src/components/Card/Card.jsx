@@ -8,7 +8,7 @@ const Card = props => {
   console.log(props.book);
 
   const render = (
-    <li key={props.id}>
+    <li key={props.id} id={props.id}>
       <div className="book">
         <div className="book-top">
           <div
@@ -16,7 +16,7 @@ const Card = props => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${props.imageLinks.thumbnail})`,
+              backgroundImage: `url(${props.thumbnail})`,
             }}
           ></div>
           <ShelfChanger onChange={props.onChange} />
