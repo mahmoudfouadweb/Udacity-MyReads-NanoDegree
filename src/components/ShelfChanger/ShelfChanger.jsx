@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import classes from './shelfChanger.module.scss';
 
-const ShelfChanger = () => {
+const ShelfChanger = props => {
+  console.log('ShelfChanger', props.onChange);
+
   const [isChange, setIsChange] = useState('none');
 
   const changeStatusHandler = e => {
-    
     const current = e.target.value;
     setIsChange(current);
   };
@@ -13,7 +14,7 @@ const ShelfChanger = () => {
   return (
     <div className="book-shelf-changer">
       <select onClick={e => changeStatusHandler(e)}>
-        <option value="none" selected disabled>
+        <option value="none" defaultValue disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>
