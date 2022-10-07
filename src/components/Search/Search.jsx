@@ -5,22 +5,16 @@ import ShelfChanger from '../ShelfChanger/ShelfChanger';
 
 const Search = ({ toggleShowSearchButton }) => {
   const [searchItem, setSearchItem] = useState([]);
-  const [searchContent, setSearchContent] = useState('');
+  const [searchContent, setSearchContent] = useState('t');
 
   const userInput = e => {
     setSearchContent(e.currentTarget.value);
   };
 
-  const book = useEffect(() => {
-    if (searchContent) {
-      const result = search(searchContent, 10);
-      if (result) {
-        setSearchItem(result);
-      }
-    }
-    // console.log(result);
+  useEffect(() => {
+    search(searchContent).then(data => setSearchItem([...data]));
+    // setSearchItem([...searchItem, books]);
   }, [searchContent]);
-  console.log(book);
   console.log(searchContent);
   console.log(searchItem);
 
@@ -33,13 +27,13 @@ const Search = ({ toggleShowSearchButton }) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${item.imageLinks})`,
+              backgroundImage: `url(${item.imageLinks.thumbnail})`,
             }}
           ></div>
           <ShelfChanger />
         </div>
         <div className="book-title">{item.title}</div>
-        <div className="book-authors">{item.authors[0]}</div>
+        <div className="book-authors">{item.authors}</div>
       </div>
     </li>
   ));
@@ -63,7 +57,7 @@ const Search = ({ toggleShowSearchButton }) => {
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid">{searchCard ? searchCard : ''}</ol>
+        <ol className="books-grid">{searchContent && searchCard}</ol>
       </div>
     </div>
   );
