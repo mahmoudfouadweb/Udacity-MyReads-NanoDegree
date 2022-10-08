@@ -54,21 +54,9 @@ const BookList = ({ toggleShowSearchButton }) => {
 
       <div className="list-books-content">
         <div>
-          <BookShelf
-            book={isCurrentlyReading}
-            title={'Currently Reading'}
-            // onChange={bookChangeHandler}
-          />
-          <BookShelf
-            book={isWantToRead}
-            title={'Want to Read'}
-            // onChange={bookChangeHandler}
-          />
-          <BookShelf
-            book={isRead}
-            title={'Read'}
-            // onChange={bookChangeHandler}
-          />
+          <BookShelf book={isCurrentlyReading} title={'Currently Reading'} />
+          <BookShelf book={isWantToRead} title={'Want to Read'} />
+          <BookShelf book={isRead} title={'Read'} />
         </div>
       </div>
       <div className="open-search">
