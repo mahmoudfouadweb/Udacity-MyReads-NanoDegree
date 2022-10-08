@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = props => {
+  const [isChange, setIsChange] = useState('');
+  props.onChange(isChange);
   return (
     <div className="book-shelf-changer">
-      <select onClick={e => props.onIsChange(e.target.value)}>
+      <select onClick={e => setIsChange(e.target.value)}>
         <option value="disable" defaultValue disabled>
           Move to...
         </option>

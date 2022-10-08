@@ -3,7 +3,7 @@ import { search } from '../../BooksAPI';
 import Card from '../Card/Card';
 import classes from './search.module.scss';
 
-const Search = ({ toggleShowSearchButton }) => {
+const Search = ({ toggleShowSearchButton, isChange }) => {
   const [searchItem, setSearchItem] = useState([]);
   const [searchContent, setSearchContent] = useState('');
 
@@ -50,7 +50,17 @@ const Search = ({ toggleShowSearchButton }) => {
       </div> */}
       <div className="search-books-results">
         <ol className="books-grid">
-          {searchContent && <Card book={searchItem} />}
+          {searchContent &&
+            searchItem.map(item => (
+              <Card
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                thumbnail={item.imageLinks.thumbnail}
+                authors={item.authors}
+                onChange={isChange}
+              />
+            ))}
         </ol>
       </div>
     </div>
