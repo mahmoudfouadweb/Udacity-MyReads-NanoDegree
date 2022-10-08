@@ -15,8 +15,13 @@ const BookShelf = props => {
               title={item.title}
               thumbnail={item.imageLinks.thumbnail}
               authors={item.authors}
-              onChange={props.onChange}
-              
+              handlers={props.handlers}
+              isCurrentlyReading={props.isCurrentlyReading}
+              isWantToRead={props.isWantToRead}
+              isRead={props.isRead}
+              setIsCurrentlyReading={props.setIsCurrentlyReading}
+              setIsWantToRead={props.setIsWantToRead}
+              setIsRead={props.setIsRead}
             />
           ))}
         </ol>

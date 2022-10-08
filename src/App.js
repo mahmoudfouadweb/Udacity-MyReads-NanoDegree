@@ -5,7 +5,6 @@ import BookList from './components/BookList/BookList';
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
-  const [isChange, setIsChange] = useState('');
 
   const searchHandler = close => {
     setShowSearchpage(close);
@@ -45,49 +44,19 @@ function App() {
     },
   ]);
 
-  const handlers = {
-    currentReadingHandler: target => {
-      const readClear = isRead.filter(item => item != target.id);
-      const wantReadClear = isWantToRead.filter(item => item != target.id);
-      setIsCurrentlyReading([...isCurrentlyReading, target]);
-    },
-    wantReadHandler: target => {
-      const readClear = isRead.filter(item => item != target.id);
-      const currentlyReadingClear = isCurrentlyReading.filter(
-        item => item != target.id
-      );
-      setIsWantToRead([...isWantToRead, target]);
-    },
-    readHandler: target => {
-      const wantReadClear = isWantToRead.filter(item => item != target.id);
-      const currentlyReadingClear = isCurrentlyReading.filter(
-        item => item != target.id
-      );
-      setIsRead([...isRead, target]);
-    },
-    noneHandler: target => {
-      const wantReadClear = isWantToRead.filter(item => item != target.id);
-      const currentlyReadingClear = isCurrentlyReading.filter(
-        item => item != target.id
-      );
-      const readClear = isRead.filter(item => item != target.id);
-      return { ...target, shelf: '' };
-    },
-  };
-
   return (
     <div className="app">
       {showSearchPage ? (
-        <Search isChange={isChange} toggleShowSearchButton={searchHandler} />
+        <Search toggleShowSearchButton={searchHandler} />
       ) : (
         <BookList
-          setIsChange={setIsChange}
-          isChange={isChange}
           toggleShowSearchButton={searchHandler}
           isCurrentlyReading={isCurrentlyReading}
+          setIsCurrentlyReading={setIsCurrentlyReading}
           isWantToRead={isWantToRead}
+          setIsWantToRead={setIsWantToRead}
           isRead={isRead}
-          handlers={handlers}
+          setIsRead={setIsRead}
         />
       )}
     </div>

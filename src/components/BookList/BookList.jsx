@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
-  console.log(props.handlers);
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -12,22 +11,34 @@ const BookList = props => {
       <div className="list-books-content">
         <div>
           <BookShelf
-            setIsChange={props.setIsChange}
-            isChange={props.isChange}
-            book={props.isCurrentlyReading}
             title={'Currently Reading'}
+            book={props.isCurrentlyReading}
+            isCurrentlyReading={props.isCurrentlyReading}
+            isWantToRead={props.isWantToRead}
+            isRead={props.isRead}
+            setIsCurrentlyReading={props.setIsCurrentlyReading}
+            setIsWantToRead={props.setIsWantToRead}
+            setIsRead={props.setIsRead}
           />
           <BookShelf
-            setIsChange={props.setIsChange}
-            isChange={props.isChange}
-            book={props.isWantToRead}
             title={'Want to Read'}
+            book={props.isWantToRead}
+            isCurrentlyReading={props.isCurrentlyReading}
+            isWantToRead={props.isWantToRead}
+            isRead={props.isRead}
+            setIsCurrentlyReading={props.setIsCurrentlyReading}
+            setIsWantToRead={props.setIsWantToRead}
+            setIsRead={props.setIsRead}
           />
           <BookShelf
-            setIsChange={props.setIsChange}
-            isChange={props.isChange}
-            book={props.isRead}
             title={'Read'}
+            book={props.isRead}
+            isCurrentlyReading={props.isCurrentlyReading}
+            isWantToRead={props.isWantToRead}
+            isRead={props.isRead}
+            setIsCurrentlyReading={props.setIsCurrentlyReading}
+            setIsWantToRead={props.setIsWantToRead}
+            setIsRead={props.setIsRead}
           />
         </div>
       </div>
