@@ -9,10 +9,12 @@ function App() {
   const [isCurrentlyReading, setIsCurrentlyReading] = useState([]);
   const [isWantToRead, setIsWantToRead] = useState([]);
   const [isRead, setIsRead] = useState([]);
+
   useEffect(() => {
     let allBooks = [];
     getAll().then(data => {
       for (const key in data) {
+        console.log(data);
         const book = {
           id: data[key].id,
           title: data[key].title,
@@ -33,15 +35,17 @@ function App() {
     const currentlyReading = allBooks.filter(
       book => book.shelf === 'currentlyReading'
     );
+
     setIsCurrentlyReading([...isCurrentlyReading, , ...currentlyReading]);
   };
+
   const wantToReadHandler = allBooks => {
     const wantToRead = allBooks.filter(book => book.shelf === 'wantToRead');
     setIsWantToRead([...isWantToRead, ...wantToRead]);
   };
+
   const readHandler = allBooks => {
     const read = allBooks.filter(book => book.shelf === 'read');
-
     setIsRead([...isRead, ...read]);
   };
 

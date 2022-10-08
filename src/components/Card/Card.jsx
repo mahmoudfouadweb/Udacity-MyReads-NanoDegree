@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getAll, update } from '../../BooksAPI';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 

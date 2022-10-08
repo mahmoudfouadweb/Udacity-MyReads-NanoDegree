@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
@@ -20,8 +20,6 @@ const BookList = props => {
             setIsCurrentlyReading={props.setIsCurrentlyReading}
             setIsWantToRead={props.setIsWantToRead}
             setIsRead={props.setIsRead}
-            // setIsAllBooks={props.setIsAllBooks}
-            // isAllBooks={props.isAllBooks}
           />
           <BookShelf
             key={'Want to Read'}
@@ -33,8 +31,6 @@ const BookList = props => {
             setIsCurrentlyReading={props.setIsCurrentlyReading}
             setIsWantToRead={props.setIsWantToRead}
             setIsRead={props.setIsRead}
-            // setIsAllBooks={props.setIsAllBooks}
-            // isAllBooks={props.isAllBooks}
           />
           <BookShelf
             key={'Read'}
@@ -46,8 +42,6 @@ const BookList = props => {
             setIsCurrentlyReading={props.setIsCurrentlyReading}
             setIsWantToRead={props.setIsWantToRead}
             setIsRead={props.setIsRead}
-            // setIsAllBooks={props.setIsAllBooks}
-            // isAllBooks={props.isAllBooks}
           />
         </div>
       </div>

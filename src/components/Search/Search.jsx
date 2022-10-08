@@ -11,22 +11,6 @@ const Search = ({ toggleShowSearchButton, isChange }) => {
     setSearchContent(e.currentTarget.value);
   };
 
-  useEffect(() => {
-    async function searchAsync() {
-      if (searchContent)
-        await search(searchContent).then(data => {
-          if (data) setSearchItem([...data]);
-          else {
-          }
-        });
-      else {
-        document.querySelector('.search-book-input').focus();
-      }
-    }
-  }, [searchContent]);
-
-  console.log(searchItem);
-
   return (
     <div className="search-books">
       <div className="search-books-bar">
