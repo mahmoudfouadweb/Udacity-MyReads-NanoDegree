@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import BookShelf from '../BookShelf/BookShelf';
 
-
-
 const BookList = ({ toggleShowSearchButton }) => {
   const [isCurrentlyReading, setIsCurrentlyReading] = useState([
     {
@@ -13,7 +11,7 @@ const BookList = ({ toggleShowSearchButton }) => {
           'http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api',
       },
       authors: 'Orson Scott Card',
-    }
+    },
   ]);
   const [isWantToRead, setIsWantToRead] = useState([
     {
@@ -38,24 +36,14 @@ const BookList = ({ toggleShowSearchButton }) => {
     },
   ]);
 
-  const currentlyReadingHandler = () => {
+  const currentlyReadingHandler = (id, title, img, authors) => {
     const newBook = {
-      id: 
-    }
-  }
-  
-  
-  const bookChangeHandler = isChange => {
-    console.log('THE MAIN FUNCTION');
-    if (isChange === 'none') {
-      console.log('none');
-    } else if (isChange === 'currentlyReading') {
-      console.log('Currently Reading');
-    } else if (isChange === 'wantToRead') {
-      console.log('Want to Read');
-    } else if (isChange === 'read') {
-      console.log('Read');
-    }
+      id: id,
+      title: title,
+      thumbnail: img,
+      author: authors,
+    };
+    setIsRead([...isRead, newBook]);
   };
 
   return (
@@ -69,17 +57,17 @@ const BookList = ({ toggleShowSearchButton }) => {
           <BookShelf
             book={isCurrentlyReading}
             title={'Currently Reading'}
-            onChange={bookChangeHandler}
+            // onChange={bookChangeHandler}
           />
           <BookShelf
             book={isWantToRead}
             title={'Want to Read'}
-            onChange={bookChangeHandler}
+            // onChange={bookChangeHandler}
           />
           <BookShelf
             book={isRead}
             title={'Read'}
-            onChange={bookChangeHandler}
+            // onChange={bookChangeHandler}
           />
         </div>
       </div>

@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
 const Card = props => {
-  console.log('Card', props.onChange);
+  const [isChange, setIsChange] = useState('');
 
-  console.log(props.book);
-
+  const bookChangeHandler = isChange => {
+    const newEntry = {
+      
+    }
+    console.log('THE MAIN FUNCTION');
+    if (isChange === 'none') {
+      console.log('none');
+    } else if (isChange === 'currentlyReading') {
+      console.log('Currently Reading');
+    } else if (isChange === 'wantToRead') {
+      console.log('Want to Read');
+    } else if (isChange === 'read') {
+      console.log('Read');
+    }
+  };
+  console.log(isChange);
   const render = (
     <li key={props.id} id={props.id}>
       <div className="book">
@@ -19,7 +33,7 @@ const Card = props => {
               backgroundImage: `url(${props.thumbnail})`,
             }}
           ></div>
-          <ShelfChanger onChange={props.onChange} />
+          <ShelfChanger onIsChange={setIsChange} onChange={bookChangeHandler} />
         </div>
         <div className="book-title">{props.title}</div>
         <div className="book-authors">{props.authors}</div>

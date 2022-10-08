@@ -16,6 +16,7 @@ const BookShelf = props => {
               thumbnail={item.imageLinks.thumbnail}
               authors={item.authors}
               onChange={props.onChange}
+              
             />
           ))}
         </ol>
