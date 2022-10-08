@@ -22,19 +22,28 @@ function App() {
         };
         allBooks.push(book);
       }
-      console.log(allBooks);
-
-      // will be a function
-      const currentlyReading = allBooks.filter(
-        book => book.shelf === 'currentlyReading'
-      );
-      const wantToRead = allBooks.filter(book => book.shelf === 'wantToRead');
-      const read = allBooks.filter(book => book.shelf === 'read');
-      setIsCurrentlyReading([...isCurrentlyReading, , ...currentlyReading]);
-      setIsWantToRead([...isWantToRead, ...wantToRead]);
-      setIsRead([...isRead, ...read]);
+      // console.log(allBooks);
+      currentlyReadingHandler(allBooks);
+      wantToReadHandler(allBooks);
+      readHandler(allBooks);
     });
   }, []);
+
+  const currentlyReadingHandler = allBooks => {
+    const currentlyReading = allBooks.filter(
+      book => book.shelf === 'currentlyReading'
+    );
+    setIsCurrentlyReading([...isCurrentlyReading, , ...currentlyReading]);
+  };
+  const wantToReadHandler = allBooks => {
+    const wantToRead = allBooks.filter(book => book.shelf === 'wantToRead');
+    setIsWantToRead([...isWantToRead, ...wantToRead]);
+  };
+  const readHandler = allBooks => {
+    const read = allBooks.filter(book => book.shelf === 'read');
+
+    setIsRead([...isRead, ...read]);
+  };
 
   const searchHandler = close => {
     setShowSearchpage(close);
