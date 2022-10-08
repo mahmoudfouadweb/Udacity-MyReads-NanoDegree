@@ -51,21 +51,12 @@ function App() {
   const searchHandler = close => {
     setShowSearchpage(close);
   };
-  console.log(isWantToRead, isCurrentlyReading);
   return (
     <div className="app">
       {showSearchPage ? (
         <Search toggleShowSearchButton={searchHandler} />
       ) : (
-        <BookList
-          toggleShowSearchButton={searchHandler}
-          isCurrentlyReading={isCurrentlyReading}
-          setIsCurrentlyReading={setIsCurrentlyReading}
-          isWantToRead={isWantToRead}
-          setIsWantToRead={setIsWantToRead}
-          isRead={isRead}
-          setIsRead={setIsRead}
-        />
+        <BookList toggleShowSearchButton={searchHandler} />
       )}
     </div>
   );
