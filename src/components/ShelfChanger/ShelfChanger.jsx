@@ -2,9 +2,6 @@ import React from 'react';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = props => {
-
-
-
   return (
     <div className="book-shelf-changer">
       <select onClick={e => props.setIsChange(e.target.value)}>

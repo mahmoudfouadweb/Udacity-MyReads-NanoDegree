@@ -17,7 +17,7 @@ const BookShelf = props => {
               key={item.id}
               id={item.id}
               title={item.title}
-              thumbnail={item?.imageLinks?.thumbnail}
+              thumbnail={item?.thumbnail}
               authors={item.authors}
               handlers={props.handlers}
               isCurrentlyReading={props.isCurrentlyReading}

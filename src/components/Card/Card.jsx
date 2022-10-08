@@ -7,42 +7,6 @@ const Card = props => {
   const [isChange, setIsChange] = useState('none');
   const [isAllBooks, setIsAllBooks] = useState([]);
 
-  const bookChangeHandler = isChange => {
-    // const newEntry = {
-    //   id: props.id,
-    //   title: props.title,
-    //   thumbnail: props.thumbnail,
-    //   author: props.authors,
-    //   shelf: isChange,
-    // };
-    // props.allBookHandler([newEntry]);
-    // console.log('THE MAIN FUNCTION');
-    // console.log(newEntry);
-    // console.log(isChange);
-    // return newEntry;
-  };
-  useEffect(() => {
-    async function currentRead() {
-      const newEntry = {
-        id: props.id,
-        title: props.title,
-        thumbnail: props.thumbnail,
-        author: props.authors,
-        shelf: isChange,
-      };
-      if (newEntry.shelf === 'currentlyReading') {
-        props.setIsCurrentlyReading([...props.isCurrentlyReading, newEntry]);
-        const result = await update(newEntry, newEntry.shelf);
-        console.log(result);
-      }
-    }
-  }, [isChange]);
-
-  useEffect(() => {
-    const all = getAll();
-    all.then(data => setIsAllBooks([...isAllBooks, ...data]));
-  }, []);
-  console.log(isAllBooks);
   const render = (
     <li key={props.id} id={props.id}>
       <div className="book">

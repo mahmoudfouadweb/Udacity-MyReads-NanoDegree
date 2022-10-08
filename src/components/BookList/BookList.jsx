@@ -11,6 +11,7 @@ const BookList = props => {
       <div className="list-books-content">
         <div>
           <BookShelf
+            key={'Currently Reading'}
             title={'Currently Reading'}
             book={props.isCurrentlyReading}
             isCurrentlyReading={props.isCurrentlyReading}
@@ -23,6 +24,7 @@ const BookList = props => {
             // isAllBooks={props.isAllBooks}
           />
           <BookShelf
+            key={'Want to Read'}
             title={'Want to Read'}
             book={props.isWantToRead}
             isCurrentlyReading={props.isCurrentlyReading}
@@ -35,6 +37,7 @@ const BookList = props => {
             // isAllBooks={props.isAllBooks}
           />
           <BookShelf
+            key={'Read'}
             title={'Read'}
             book={props.isRead}
             isCurrentlyReading={props.isCurrentlyReading}
