@@ -1,15 +1,11 @@
 import './App.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from './components/Search/Search';
 import BookList from './components/BookList/BookList';
+import { getAll } from './BooksAPI';
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
-
-  const searchHandler = close => {
-    setShowSearchpage(close);
-  };
-
   const [isCurrentlyReading, setIsCurrentlyReading] = useState([
     {
       id: '12',
@@ -43,6 +39,26 @@ function App() {
       authors: 'J.R.R. Tolkien',
     },
   ]);
+  useEffect(() => {
+    getAll().then(data => {
+      let allBooks = [];
+      for (const key in data) {
+        const book = {
+          id: data[key].id,
+          title: data[key].title,
+          thumbnail: data[key].imageLinks.thumbnail,
+          authors: data[key].authors,
+        };
+        console.log(allBooks);
+        console.log(book);
+      }
+      allBooks.push(data);
+    });
+  });
+
+  const searchHandler = close => {
+    setShowSearchpage(close);
+  };
 
   return (
     <div className="app">

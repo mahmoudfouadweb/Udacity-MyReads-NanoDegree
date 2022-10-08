@@ -19,6 +19,8 @@ const BookList = props => {
             setIsCurrentlyReading={props.setIsCurrentlyReading}
             setIsWantToRead={props.setIsWantToRead}
             setIsRead={props.setIsRead}
+            // setIsAllBooks={props.setIsAllBooks}
+            // isAllBooks={props.isAllBooks}
           />
           <BookShelf
             title={'Want to Read'}
@@ -29,6 +31,8 @@ const BookList = props => {
             setIsCurrentlyReading={props.setIsCurrentlyReading}
             setIsWantToRead={props.setIsWantToRead}
             setIsRead={props.setIsRead}
+            // setIsAllBooks={props.setIsAllBooks}
+            // isAllBooks={props.isAllBooks}
           />
           <BookShelf
             title={'Read'}
@@ -39,6 +43,8 @@ const BookList = props => {
             setIsCurrentlyReading={props.setIsCurrentlyReading}
             setIsWantToRead={props.setIsWantToRead}
             setIsRead={props.setIsRead}
+            // setIsAllBooks={props.setIsAllBooks}
+            // isAllBooks={props.isAllBooks}
           />
         </div>
       </div>

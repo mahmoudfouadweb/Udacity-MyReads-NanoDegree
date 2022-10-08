@@ -3,6 +3,10 @@ import Card from '../Card/Card';
 import classes from './bookShelf.module.scss';
 
 const BookShelf = props => {
+  // const allBookHandler = book => {
+  //   props.setIsAllBooks([...props.isAllBooks, ...book]);
+  // };
+
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.title}</h2>
@@ -13,7 +17,7 @@ const BookShelf = props => {
               key={item.id}
               id={item.id}
               title={item.title}
-              thumbnail={item.imageLinks.thumbnail}
+              thumbnail={item?.imageLinks?.thumbnail}
               authors={item.authors}
               handlers={props.handlers}
               isCurrentlyReading={props.isCurrentlyReading}
@@ -22,6 +26,7 @@ const BookShelf = props => {
               setIsCurrentlyReading={props.setIsCurrentlyReading}
               setIsWantToRead={props.setIsWantToRead}
               setIsRead={props.setIsRead}
+              // allBookHandler={allBookHandler}
             />
           ))}
         </ol>
