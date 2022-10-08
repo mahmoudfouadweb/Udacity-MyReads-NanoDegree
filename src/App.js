@@ -14,7 +14,6 @@ function App() {
     let allBooks = [];
     getAll().then(data => {
       for (const key in data) {
-        console.log(data);
         const book = {
           id: data[key].id,
           title: data[key].title,
@@ -24,7 +23,7 @@ function App() {
         };
         allBooks.push(book);
       }
-      // console.log(allBooks);
+      console.log(allBooks);
       currentlyReadingHandler(allBooks);
       wantToReadHandler(allBooks);
       readHandler(allBooks);
@@ -52,7 +51,7 @@ function App() {
   const searchHandler = close => {
     setShowSearchpage(close);
   };
-
+  console.log(isWantToRead, isCurrentlyReading);
   return (
     <div className="app">
       {showSearchPage ? (
