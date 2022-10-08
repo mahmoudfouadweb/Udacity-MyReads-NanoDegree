@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = props => {
-  const [isChange, setIsChange] = useState('');
-  props.onChange(isChange);
+  const [isChange, setIsChange] = useState('none');
+
+  useEffect(() => {
+    props.onChange(isChange);
+  }, [isChange]);
+  
+  
+  
   return (
     <div className="book-shelf-changer">
       <select onClick={e => setIsChange(e.target.value)}>
