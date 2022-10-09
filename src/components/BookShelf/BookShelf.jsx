@@ -79,20 +79,6 @@ const BookShelf = props => {
                   />
                 ))
             : null}
-
-          {/* {props.book
-            .filter(item => item.shelf === 'wantToRead')
-            .map(item => (
-              <Card
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                thumbnail={item.thumbnail}
-                authors={item.authors}
-                shelf={item.shelf}
-                setIsChange={props.setIsChange}
-              />
-            ))} */}
         </ol>
       </div>
     </div>
