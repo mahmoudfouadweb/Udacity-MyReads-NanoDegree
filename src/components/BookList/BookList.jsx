@@ -33,23 +33,22 @@ const BookList = props => {
       <div className="list-books-content">
         <div>
           <BookShelf
-            key={'currentlyReading'}
             title={'currentlyReading'}
             setIsChange={setIsChange}
             isAllBooks={isAllBooks}
+            isChange={isChange}
           />
           <BookShelf
-            key={'wantToRead'}
             title={'wantToRead'}
             isChange={isChange}
             setIsChange={setIsChange}
             isAllBooks={isAllBooks}
           />
           <BookShelf
-            key={'read'}
             title={'read'}
             setIsChange={setIsChange}
             isAllBooks={isAllBooks}
+            isChange={isChange}
           />
         </div>
       </div>

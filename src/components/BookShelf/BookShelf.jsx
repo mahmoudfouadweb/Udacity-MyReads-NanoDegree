@@ -5,8 +5,12 @@ import Card from '../Card/Card';
 
 const BookShelf = props => {
   const [isUpdating, setIsUpdating] = useState(false);
-
-  // props.book.mab(item => console.log(item));
+  const [isUpdated, setIsUpdated] = useState([]);
+  
+  const changeShelfHandler = () => {
+    
+    
+  }
   // props.isAllBooks.map(item => console.log(item));
   // const book = {
   //   id: props.id,
@@ -21,11 +25,7 @@ const BookShelf = props => {
   //   if (props.isChange) setIsUpdating(true);
   // };
 
-  // useEffect(() => {
-  //   changeHandler(props.isChange);
-  //   if (props.isChange) update(book, props.isChange);
-  //   setIsUpdating(false);
-  // }, [props.isChange]);
+
 
   return (
     <div className="bookshelf">

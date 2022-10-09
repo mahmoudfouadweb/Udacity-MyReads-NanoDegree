@@ -15,7 +15,11 @@ const Card = props => {
               backgroundImage: `url(${props.thumbnail})`,
             }}
           ></div>
-          <ShelfChanger setIsChange={props.setIsChange} />
+          <ShelfChanger
+            isChange={props.isChange}
+            book={props.id}
+            setIsChange={props.setIsChange}
+          />
         </div>
         <div className="book-title">{props.title}</div>
         <div className="book-authors">{props.authors}</div>

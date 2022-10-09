@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { update } from '../../BooksAPI';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = props => {
+  useEffect(() => {
+    if (props.isChange) update(props.book, props.isChange);
+  }, [props.isChange]);
+
   return (
     <div className="book-shelf-changer">
       <select onClick={e => props.setIsChange(e.target.value)}>
