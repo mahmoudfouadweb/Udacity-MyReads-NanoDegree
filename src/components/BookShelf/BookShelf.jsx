@@ -5,12 +5,8 @@ import Card from '../Card/Card';
 
 const BookShelf = props => {
   const [isUpdating, setIsUpdating] = useState(false);
-  const [isUpdated, setIsUpdated] = useState([]);
-  
-  const changeShelfHandler = () => {
-    
-    
-  }
+
+  const changeShelfHandler = () => {};
   // props.isAllBooks.map(item => console.log(item));
   // const book = {
   //   id: props.id,
@@ -25,8 +21,6 @@ const BookShelf = props => {
   //   if (props.isChange) setIsUpdating(true);
   // };
 
-
-
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.title}</h2>
@@ -34,7 +28,7 @@ const BookShelf = props => {
         <ol className="books-grid">
           {props.title === 'currentlyReading'
             ? props.isAllBooks
-                .filter(item => item.shelf === 'currentlyReading')
+                .filter(item => item.shelf === 'currentlyReading' || item === true)
                 .map(item => (
                   <Card
                     key={item.id}
@@ -43,7 +37,8 @@ const BookShelf = props => {
                     thumbnail={item.thumbnail}
                     authors={item.authors}
                     shelf={item.shelf}
-                    setIsChange={props.setIsChange}
+                    setIsUpdating={props.setIsUpdating}
+                    updateShelf={props.updateShelf}
                   />
                 ))
             : null}
@@ -59,7 +54,8 @@ const BookShelf = props => {
                     thumbnail={item.thumbnail}
                     authors={item.authors}
                     shelf={item.shelf}
-                    setIsChange={props.setIsChange}
+                    setIsUpdating={props.setIsUpdating}
+                    updateShelf={props.updateShelf}
                   />
                 ))
             : null}
@@ -75,7 +71,8 @@ const BookShelf = props => {
                     thumbnail={item.thumbnail}
                     authors={item.authors}
                     shelf={item.shelf}
-                    setIsChange={props.setIsChange}
+                    setIsUpdating={props.setIsUpdating}
+                    updateShelf={props.updateShelf}
                   />
                 ))
             : null}

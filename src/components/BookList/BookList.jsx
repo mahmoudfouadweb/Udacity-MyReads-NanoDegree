@@ -4,8 +4,7 @@ import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
   const [isAllBooks, setIsAllBooks] = useState([]);
-  const [isChange, setIsChange] = useState('');
-
+  const [isUpdating, setIsUpdating] = useState(false);
   useEffect(() => {
     getAll().then(data => {
       const allBooks = [];
@@ -21,9 +20,14 @@ const BookList = props => {
       }
       setIsAllBooks([...allBooks]);
     });
-  }, [isChange]);
+  }, [isUpdating]);
+  console.log(isUpdating);
 
-  console.log(isAllBooks);
+  const updateShelf = (book, isChange) => {
+    const filtered = isAllBooks.filter(item => item.id != book.id);
+    setIsAllBooks([...filtered, { ...book, shelf: isChange }]);
+  };
+  // console.log(isAllBooks);
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -34,21 +38,21 @@ const BookList = props => {
         <div>
           <BookShelf
             title={'currentlyReading'}
-            setIsChange={setIsChange}
             isAllBooks={isAllBooks}
-            isChange={isChange}
+            setIsUpdating={setIsUpdating}
+            updateShelf={updateShelf}
           />
           <BookShelf
             title={'wantToRead'}
-            isChange={isChange}
-            setIsChange={setIsChange}
             isAllBooks={isAllBooks}
+            setIsUpdating={setIsUpdating}
+            updateShelf={updateShelf}
           />
           <BookShelf
             title={'read'}
-            setIsChange={setIsChange}
             isAllBooks={isAllBooks}
-            isChange={isChange}
+            setIsUpdating={setIsUpdating}
+            updateShelf={updateShelf}
           />
         </div>
       </div>

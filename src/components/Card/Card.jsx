@@ -3,6 +3,13 @@ import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
 const Card = props => {
+  const currentBook = {
+    id: props.id,
+    shelf: props.shelf,
+    title: props.title,
+    authors: props.authors,
+    thumbnail: props.thumbnail,
+  };
   const render = (
     <li key={props.id} id={props.id}>
       <div className="book">
@@ -16,9 +23,20 @@ const Card = props => {
             }}
           ></div>
           <ShelfChanger
+            setIsUpdating={props.setIsUpdating}
             isChange={props.isChange}
-            book={props.id}
-            setIsChange={props.setIsChange}
+            key={props.id + '1'}
+            // updateShelf={() =>
+            //   props.updateShelf({
+            //     id: props.id,
+            //     shelf: props.shelf,
+            //     title: props.title,
+            //     authors: props.authors,
+            //     thumbnail: props.thumbnail,
+            //   })
+            // }
+            updateShelf={props.updateShelf}
+            currentBook={currentBook}
           />
         </div>
         <div className="book-title">{props.title}</div>

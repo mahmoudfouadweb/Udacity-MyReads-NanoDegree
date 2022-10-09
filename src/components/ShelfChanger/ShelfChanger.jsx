@@ -1,15 +1,46 @@
-import React, { useEffect } from 'react';
-import { update } from '../../BooksAPI';
+import React, { useEffect, useState } from 'react';
+import { get, getAll, update } from '../../BooksAPI';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = props => {
-  useEffect(() => {
-    if (props.isChange) update(props.book, props.isChange);
-  }, [props.isChange]);
+  const [isBook, setIsBook] = useState([]);
+  const [isChange, setIsChange] = useState('');
 
+  // useEffect(() => {
+  //   if (isChange) props.updateShelf(props.currentBook, isChange);
+  // }, []);
+  //
+  // useEffect(() => {
+  //   getAll().then(data => {
+  //     const filtered = data
+  //       .filter(book => book.id === props.book)
+  //       .mab(book => book);
+  //     setIsBook([filtered]);
+  //   });
+  // const book = {
+  //   id: data[key].id,
+  //   title: data[key].title,
+  //   thumbnail: data[key].imageLinks.thumbnail,
+  //   authors: data[key].authors,
+  //   shelf: data[key].shelf,
+  // };
+  // }, []);
+
+  useEffect(() => {
+    if (isChange) {
+      setIsBook(props.currentBook);
+      props.updateShelf(isBook, isChange);
+      update(isBook, isChange);
+    } else return;
+
+    // props.setIsUpdating(true);
+  }, [isChange]);
+
+  console.log(isChange);
+  // console.log(isBook);
   return (
     <div className="book-shelf-changer">
-      <select onClick={e => props.setIsChange(e.target.value)}>
+      <select onClick={e => setIsChange(e.target.value)}>
         <option value="disable" defaultValue disabled>
           Move to...
         </option>
