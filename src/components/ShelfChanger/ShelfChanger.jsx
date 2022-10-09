@@ -6,29 +6,8 @@ const ShelfChanger = props => {
   const [isBook, setIsBook] = useState([]);
   const [isChange, setIsChange] = useState('');
 
-  // useEffect(() => {
-  //   if (isChange) props.updateShelf(props.currentBook, isChange);
-  // }, []);
-  //
-  // useEffect(() => {
-  //   getAll().then(data => {
-  //     const filtered = data
-  //       .filter(book => book.id === props.book)
-  //       .mab(book => book);
-  //     setIsBook([filtered]);
-  //   });
-  // const book = {
-  //   id: data[key].id,
-  //   title: data[key].title,
-  //   thumbnail: data[key].imageLinks.thumbnail,
-  //   authors: data[key].authors,
-  //   shelf: data[key].shelf,
-  // };
-  // }, []);
-
   useEffect(() => {
     if (isChange) {
-      setIsBook(props.currentBook);
       props.updateShelf(isBook, isChange);
       update(isBook, isChange);
     } else return;
@@ -40,7 +19,12 @@ const ShelfChanger = props => {
   // console.log(isBook);
   return (
     <div className="book-shelf-changer">
-      <select onClick={e => setIsChange(e.target.value)}>
+      <select
+        onClick={e => {
+          setIsChange(e.target.value);
+          setIsBook(props.currentBook);
+        }}
+      >
         <option value="disable" defaultValue disabled>
           Move to...
         </option>

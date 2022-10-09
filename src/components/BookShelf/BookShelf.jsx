@@ -28,7 +28,7 @@ const BookShelf = props => {
         <ol className="books-grid">
           {props.title === 'currentlyReading'
             ? props.isAllBooks
-                .filter(item => item.shelf === 'currentlyReading' || item === true)
+                .filter(item => item.shelf === 'currentlyReading')
                 .map(item => (
                   <Card
                     key={item.id}
