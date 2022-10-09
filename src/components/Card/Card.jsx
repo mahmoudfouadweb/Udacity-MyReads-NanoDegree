@@ -25,7 +25,7 @@ const Card = props => {
           <ShelfChanger
             setIsUpdating={props.setIsUpdating}
             isChange={props.isChange}
-            key={props.id + '1'}
+            key={props.i}
             // updateShelf={() =>
             //   props.updateShelf({
             //     id: props.id,

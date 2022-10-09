@@ -3,26 +3,30 @@ import { get, getAll, update } from '../../BooksAPI';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = props => {
-  const [isBook, setIsBook] = useState([]);
+  const [isBook, setIsBook] = useState({});
   const [isChange, setIsChange] = useState('');
 
   useEffect(() => {
     if (isChange) {
-      props.updateShelf(isBook, isChange);
-      update(isBook, isChange);
-    } else return;
+      if (isBook) {
+        update(isBook, isChange);
+        props.updateShelf(isBook, isChange);
+        props.setIsUpdating(true);
+        console.log('done ✔');
+        console.log('isBook INSIDE', isBook);
+      } else return;
+    }
+  }, [isBook]);
 
-    // props.setIsUpdating(true);
-  }, [isChange]);
+  console.log('isChange after useEffect Shelf Changer', isChange);
+  console.log('isBook OUTSIDE', isBook);
 
-  console.log(isChange);
-  // console.log(isBook);
   return (
     <div className="book-shelf-changer">
       <select
         onClick={e => {
+          setIsBook({ ...props.currentBook, shelf: isChange });
           setIsChange(e.target.value);
-          setIsBook(props.currentBook);
         }}
       >
         <option value="disable" defaultValue disabled>

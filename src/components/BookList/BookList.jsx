@@ -20,13 +20,26 @@ const BookList = props => {
       }
       setIsAllBooks([...allBooks]);
     });
+    setIsUpdating(false);
+    console.log('getAll ', isUpdating);
   }, [isUpdating]);
-  console.log(isUpdating);
+  console.log('after getAll ', isUpdating);
 
   const updateShelf = (book, isChange) => {
+    console.log('updateShelf book ', book);
+
+    const updatedBook = {
+      id: book.id,
+      shelf: book.shelf,
+      title: book.title,
+      authors: book.authors,
+      thumbnail: book.shelf,
+    };
     const filtered = isAllBooks.filter(item => item.id != book.id);
-    setIsAllBooks([...filtered, { ...book, shelf: isChange }]);
+    setIsAllBooks([...filtered, updatedBook]);
   };
+  console.log(isAllBooks);
+  console.log('===========================================');
   // console.log(isAllBooks);
   return (
     <div className="list-books">
