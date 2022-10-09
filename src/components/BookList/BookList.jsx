@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAll } from '../../BooksAPI';
 import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
+  const [isAllBooks, setIsAllBooks] = useState([]);
+  const [isChange, setIsChange] = useState('');
+
+  useEffect(() => {
+    getAll().then(data => {
+      const allBooks = [];
+      for (const key in data) {
+        const book = {
+          id: data[key].id,
+          title: data[key].title,
+          thumbnail: data[key].imageLinks.thumbnail,
+          authors: data[key].authors,
+          shelf: data[key].shelf,
+        };
+        allBooks.push(book);
+      }
+      setIsAllBooks([...allBooks]);
+    });
+  }, [isChange]);
+
+  console.log(isAllBooks);
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -11,37 +33,23 @@ const BookList = props => {
       <div className="list-books-content">
         <div>
           <BookShelf
-            key={'Currently Reading'}
-            title={'Currently Reading'}
-            book={props.isCurrentlyReading}
-            isCurrentlyReading={props.isCurrentlyReading}
-            isWantToRead={props.isWantToRead}
-            isRead={props.isRead}
-            setIsCurrentlyReading={props.setIsCurrentlyReading}
-            setIsWantToRead={props.setIsWantToRead}
-            setIsRead={props.setIsRead}
+            key={'currentlyReading'}
+            title={'currentlyReading'}
+            setIsChange={setIsChange}
+            isAllBooks={isAllBooks}
           />
           <BookShelf
-            key={'Want to Read'}
-            title={'Want to Read'}
-            book={props.isWantToRead}
-            isCurrentlyReading={props.isCurrentlyReading}
-            isWantToRead={props.isWantToRead}
-            isRead={props.isRead}
-            setIsCurrentlyReading={props.setIsCurrentlyReading}
-            setIsWantToRead={props.setIsWantToRead}
-            setIsRead={props.setIsRead}
+            key={'wantToRead'}
+            title={'wantToRead'}
+            isChange={isChange}
+            setIsChange={setIsChange}
+            isAllBooks={isAllBooks}
           />
           <BookShelf
-            key={'Read'}
-            title={'Read'}
-            book={props.isRead}
-            isCurrentlyReading={props.isCurrentlyReading}
-            isWantToRead={props.isWantToRead}
-            isRead={props.isRead}
-            setIsCurrentlyReading={props.setIsCurrentlyReading}
-            setIsWantToRead={props.setIsWantToRead}
-            setIsRead={props.setIsRead}
+            key={'read'}
+            title={'read'}
+            setIsChange={setIsChange}
+            isAllBooks={isAllBooks}
           />
         </div>
       </div>
