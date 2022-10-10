@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getAll } from '../../BooksAPI';
+import { getAll, update } from '../../BooksAPI';
 import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
   const [isAllBooks, setIsAllBooks] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isUpdatedBook, setIsUpdatedBook] = useState({});
+
   useEffect(() => {
     getAll().then(data => {
       const allBooks = [];
@@ -36,8 +38,16 @@ const BookList = props => {
     };
     console.log(updatedBook, 'updatedBook (){}');
     const filtered = isAllBooks.filter(item => item.id != book.id);
-    setIsAllBooks([...filtered, updatedBook]);
+    if (updatedBook.id) {
+      setIsAllBooks([...filtered, updatedBook]);
+      setIsUpdatedBook(updatedBook);
+    } else setIsAllBooks([...filtered]);
   };
+
+  useEffect(() => {
+    if (isUpdatedBook) update(isUpdatedBook, isUpdatedBook.shelf);
+  }, [isUpdatedBook]);
+
   console.log(isAllBooks);
   console.log('===========================================');
   // console.log(isAllBooks);

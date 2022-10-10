@@ -9,8 +9,9 @@ const ShelfChanger = props => {
   useEffect(() => {
     console.log('currentBook INSIDE useEffect', props.currentBook.shelf);
     if (isChange != props.currentBook.shelf && isBook) {
+      console.log(isBook);
       props.updateShelf(isBook, isChange);
-      update(isBook, isChange);
+      // update(isBook, isChange);
       props.setIsUpdating(true);
       console.log('done ✔', isChange);
       console.log('isBook INSIDE', isBook);
@@ -19,6 +20,7 @@ const ShelfChanger = props => {
 
   const clickHandler = e => {
     console.log('CLICKED');
+    console.log(e);
     setIsChange(e.target.value);
     setIsBook(props.currentBook);
   };

@@ -23,7 +23,7 @@ const BookShelf = props => {
                     shelf={item.shelf}
                     setIsUpdating={props.setIsUpdating}
                     updateShelf={props.updateShelf}
-                    isUpdatedBoo={props.isUpdatedBook}
+                    isUpdatedBook={props.isUpdatedBook}
                   />
                 ))
             : null}
@@ -42,7 +42,7 @@ const BookShelf = props => {
                     shelf={item.shelf}
                     setIsUpdating={props.setIsUpdating}
                     updateShelf={props.updateShelf}
-                    isUpdatedBoo={props.isUpdatedBook}
+                    isUpdatedBook={props.isUpdatedBook}
                   />
                 ))
             : null}
@@ -61,7 +61,7 @@ const BookShelf = props => {
                     shelf={item.shelf}
                     setIsUpdating={props.setIsUpdating}
                     updateShelf={props.updateShelf}
-                    isUpdatedBoo={props.isUpdatedBook}
+                    isUpdatedBook={props.isUpdatedBook}
                   />
                 ))
             : null}
