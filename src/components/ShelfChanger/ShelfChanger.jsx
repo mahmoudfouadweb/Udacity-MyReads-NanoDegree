@@ -7,31 +7,28 @@ const ShelfChanger = props => {
   const [isChange, setIsChange] = useState('');
 
   useEffect(() => {
-    if (isChange)
-      if (isBook) {
-        props.updateShelf(isBook, isChange);
-        update(isBook, isChange);
-        props.setIsUpdating(true);
-        console.log('done ✔', isChange);
-        console.log('isBook INSIDE', isBook);
-      } else return;
+    console.log('currentBook INSIDE useEffect', props.currentBook.shelf);
+    if (isChange != props.currentBook.shelf && isBook) {
+      props.updateShelf(isBook, isChange);
+      update(isBook, isChange);
+      props.setIsUpdating(true);
+      console.log('done ✔', isChange);
+      console.log('isBook INSIDE', isBook);
+    } else return;
   }, [isChange]);
 
-  // useEffect(() => {
-
-  // }
+  const clickHandler = e => {
+    console.log('CLICKED');
+    setIsChange(e.target.value);
+    setIsBook(props.currentBook);
+  };
 
   console.log('isChange after useEffect Shelf Changer', isChange);
   console.log('isBook OUTSIDE', isBook);
 
   return (
     <div className="book-shelf-changer">
-      <select
-        onClick={e => {
-          setIsBook({ ...props.currentBook });
-          setIsChange(e.target.value);
-        }}
-      >
+      <select onClick={e => clickHandler(e)}>
         <option value="disable" defaultValue disabled>
           Move to...
         </option>

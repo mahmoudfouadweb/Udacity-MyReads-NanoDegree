@@ -27,7 +27,6 @@ const BookList = props => {
 
   const updateShelf = (book, isChange) => {
     console.log('updateShelf book ', book);
-
     const updatedBook = {
       id: book.id,
       shelf: isChange,

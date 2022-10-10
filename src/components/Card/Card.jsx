@@ -26,17 +26,9 @@ const Card = props => {
             setIsUpdating={props.setIsUpdating}
             isChange={props.isChange}
             key={props.i}
-            // updateShelf={() =>
-            //   props.updateShelf({
-            //     id: props.id,
-            //     shelf: props.shelf,
-            //     title: props.title,
-            //     authors: props.authors,
-            //     thumbnail: props.thumbnail,
-            //   })
-            // }
             updateShelf={props.updateShelf}
             currentBook={currentBook}
+            isUpdatedBoo={props.isUpdatedBook}
           />
         </div>
         <div className="book-title">{props.title}</div>

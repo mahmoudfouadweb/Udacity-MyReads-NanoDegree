@@ -12,17 +12,18 @@ const BookShelf = props => {
           {props.title === 'currentlyReading'
             ? props.isAllBooks
                 .filter(item => item.shelf === 'currentlyReading')
-                .map((item,i) => (
+                .map((item, i) => (
                   <Card
                     key={item.id}
                     id={item.id}
-                    i={i+'0'}
+                    i={i + '0'}
                     title={item.title}
                     thumbnail={item.thumbnail}
                     authors={item.authors}
                     shelf={item.shelf}
                     setIsUpdating={props.setIsUpdating}
                     updateShelf={props.updateShelf}
+                    isUpdatedBoo={props.isUpdatedBook}
                   />
                 ))
             : null}
@@ -30,17 +31,18 @@ const BookShelf = props => {
           {props.title === 'wantToRead'
             ? props.isAllBooks
                 .filter(item => item.shelf === 'wantToRead')
-                .map((item,i) => (
+                .map((item, i) => (
                   <Card
                     key={item.id}
                     id={item.id}
-                    i={i+'1'}
+                    i={i + '1'}
                     title={item.title}
                     thumbnail={item.thumbnail}
                     authors={item.authors}
                     shelf={item.shelf}
                     setIsUpdating={props.setIsUpdating}
                     updateShelf={props.updateShelf}
+                    isUpdatedBoo={props.isUpdatedBook}
                   />
                 ))
             : null}
@@ -48,17 +50,18 @@ const BookShelf = props => {
           {props.title === 'read'
             ? props.isAllBooks
                 .filter(item => item.shelf === 'read')
-                .map((item,i) => (
+                .map((item, i) => (
                   <Card
                     key={item.id}
                     id={item.id}
-                    i={i+'2'}
+                    i={i + '2'}
                     title={item.title}
                     thumbnail={item.thumbnail}
                     authors={item.authors}
                     shelf={item.shelf}
                     setIsUpdating={props.setIsUpdating}
                     updateShelf={props.updateShelf}
+                    isUpdatedBoo={props.isUpdatedBook}
                   />
                 ))
             : null}
