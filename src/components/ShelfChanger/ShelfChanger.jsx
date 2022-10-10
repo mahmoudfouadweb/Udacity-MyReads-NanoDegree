@@ -7,16 +7,19 @@ const ShelfChanger = props => {
   const [isChange, setIsChange] = useState('');
 
   useEffect(() => {
-    if (isChange) {
+    if (isChange)
       if (isBook) {
-        update(isBook, isChange);
         props.updateShelf(isBook, isChange);
+        update(isBook, isChange);
         props.setIsUpdating(true);
-        console.log('done ✔');
+        console.log('done ✔', isChange);
         console.log('isBook INSIDE', isBook);
       } else return;
-    }
-  }, [isBook]);
+  }, [isChange]);
+
+  // useEffect(() => {
+
+  // }
 
   console.log('isChange after useEffect Shelf Changer', isChange);
   console.log('isBook OUTSIDE', isBook);
@@ -25,7 +28,7 @@ const ShelfChanger = props => {
     <div className="book-shelf-changer">
       <select
         onClick={e => {
-          setIsBook({ ...props.currentBook, shelf: isChange });
+          setIsBook({ ...props.currentBook });
           setIsChange(e.target.value);
         }}
       >

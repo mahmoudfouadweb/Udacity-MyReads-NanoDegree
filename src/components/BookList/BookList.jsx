@@ -30,11 +30,12 @@ const BookList = props => {
 
     const updatedBook = {
       id: book.id,
-      shelf: book.shelf,
+      shelf: isChange,
       title: book.title,
       authors: book.authors,
-      thumbnail: book.shelf,
+      thumbnail: book.thumbnail,
     };
+    console.log(updatedBook, 'updatedBook (){}');
     const filtered = isAllBooks.filter(item => item.id != book.id);
     setIsAllBooks([...filtered, updatedBook]);
   };
