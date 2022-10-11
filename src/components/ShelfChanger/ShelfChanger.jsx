@@ -8,11 +8,11 @@ const ShelfChanger = props => {
 
   useEffect(() => {
     console.log('currentBook INSIDE useEffect', props.currentBook.shelf);
-    if (isChange != props.currentBook.shelf && isBook) {
+    if (isBook) {
       console.log(isBook);
       props.updateShelf(isBook, isChange);
       // update(isBook, isChange);
-      props.setIsUpdating(true);
+      // props.setIsUpdating(true);
       console.log('done ✔', isChange);
       console.log('isBook INSIDE', isBook);
     } else return;
@@ -30,8 +30,16 @@ const ShelfChanger = props => {
 
   return (
     <div className="book-shelf-changer">
-      <select onClick={e => clickHandler(e)}>
-        <option value="disable" defaultValue disabled>
+      <select
+        onChange={e => {
+          e.stopPropagation();
+          clickHandler(e);
+        }}
+        defaultValue={
+          props.currentBook.shelf ? props.currentBook.shelf : 'none'
+        }
+      >
+        <option value="disable" disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>

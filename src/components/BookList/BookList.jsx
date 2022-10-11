@@ -3,29 +3,29 @@ import { getAll, update } from '../../BooksAPI';
 import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
-  const [isAllBooks, setIsAllBooks] = useState([]);
+  // const [isAllBooks, setIsAllBooks] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isUpdatedBook, setIsUpdatedBook] = useState({});
 
-  useEffect(() => {
-    getAll().then(data => {
-      const allBooks = [];
-      for (const key in data) {
-        const book = {
-          id: data[key].id,
-          title: data[key].title,
-          thumbnail: data[key].imageLinks.thumbnail,
-          authors: data[key].authors,
-          shelf: data[key].shelf,
-        };
-        allBooks.push(book);
-      }
-      setIsAllBooks([...allBooks]);
-    });
-    setIsUpdating(false);
-    console.log('getAll ', isUpdating);
-  }, [isUpdating]);
-  console.log('after getAll ', isUpdating);
+  // useEffect(() => {
+  //   getAll().then(data => {
+  //     const allBooks = [];
+  //     for (const key in data) {
+  //       const book = {
+  //         id: data[key].id,
+  //         title: data[key].title,
+  //         thumbnail: data[key].imageLinks.thumbnail,
+  //         authors: data[key].authors,
+  //         shelf: data[key].shelf,
+  //       };
+  //       allBooks.push(book);
+  //     }
+  //     setIsAllBooks([...allBooks]);
+  //   });
+  //   setIsUpdating(false);
+  //   console.log('getAll ', isUpdating);
+  // }, [isUpdating]);
+  // console.log('after getAll ', isUpdating);
 
   const updateShelf = (book, isChange) => {
     console.log('updateShelf book ', book);
@@ -37,18 +37,18 @@ const BookList = props => {
       thumbnail: book.thumbnail,
     };
     console.log(updatedBook, 'updatedBook (){}');
-    const filtered = isAllBooks.filter(item => item.id != book.id);
-    if (updatedBook.id) {
-      setIsAllBooks([...filtered, updatedBook]);
-      setIsUpdatedBook(updatedBook);
-    } else setIsAllBooks([...filtered]);
+    // const filtered = isAllBooks.filter(item => item.id != book.id);
+    if (updatedBook.id) setIsUpdatedBook(updatedBook);
+    // setIsAllBooks([...filtered, updatedBook]);
   };
 
   useEffect(() => {
-    if (isUpdatedBook) update(isUpdatedBook, isUpdatedBook.shelf);
+    if (!isUpdatedBook.id) return;
+    update(isUpdatedBook, isUpdatedBook.shelf);
+    setIsUpdating(true);
   }, [isUpdatedBook]);
 
-  console.log(isAllBooks);
+  // console.log(isAllBooks);
   console.log('===========================================');
   // console.log(isAllBooks);
   return (
@@ -61,20 +61,23 @@ const BookList = props => {
         <div>
           <BookShelf
             title={'currentlyReading'}
-            isAllBooks={isAllBooks}
+            // isAllBooks={isAllBooks}
             setIsUpdating={setIsUpdating}
+            isUpdating={isUpdating}
             updateShelf={updateShelf}
           />
           <BookShelf
             title={'wantToRead'}
-            isAllBooks={isAllBooks}
+            // isAllBooks={isAllBooks}
             setIsUpdating={setIsUpdating}
+            isUpdating={isUpdating}
             updateShelf={updateShelf}
           />
           <BookShelf
             title={'read'}
-            isAllBooks={isAllBooks}
+            // isAllBooks={isAllBooks}
             setIsUpdating={setIsUpdating}
+            isUpdating={isUpdating}
             updateShelf={updateShelf}
           />
         </div>
