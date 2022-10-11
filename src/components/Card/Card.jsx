@@ -3,6 +3,12 @@ import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
 const Card = props => {
+  const [isSelectedBook, setIsSelectedBook] = useState([]);
+  // props.isAllUpdatedBooks.map(book => {
+  //   if (book.id === props.id) setIsSelectedBook([book]);
+  //   return book;
+  // });
+  // console.log(isSelectedBook);
   
   const currentBook = {
     id: props.id,
@@ -26,7 +32,7 @@ const Card = props => {
           <ShelfChanger
             setIsUpdating={props.setIsUpdating}
             isChange={props.isChange}
-            key={props.i}
+            key={props.id}
             updateShelf={props.updateShelf}
             currentBook={currentBook}
             isUpdatedBoo={props.isUpdatedBook}

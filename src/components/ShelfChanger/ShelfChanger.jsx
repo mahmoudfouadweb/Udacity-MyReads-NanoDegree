@@ -8,11 +8,9 @@ const ShelfChanger = props => {
 
   useEffect(() => {
     console.log('currentBook INSIDE useEffect', props.currentBook.shelf);
-    if (isBook) {
+    if (isBook.id) {
       console.log(isBook);
       props.updateShelf(isBook, isChange);
-      // update(isBook, isChange);
-      // props.setIsUpdating(true);
       console.log('done ✔', isChange);
       console.log('isBook INSIDE', isBook);
     } else return;

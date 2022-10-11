@@ -7,26 +7,6 @@ const BookList = props => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [isUpdatedBook, setIsUpdatedBook] = useState({});
 
-  // useEffect(() => {
-  //   getAll().then(data => {
-  //     const allBooks = [];
-  //     for (const key in data) {
-  //       const book = {
-  //         id: data[key].id,
-  //         title: data[key].title,
-  //         thumbnail: data[key].imageLinks.thumbnail,
-  //         authors: data[key].authors,
-  //         shelf: data[key].shelf,
-  //       };
-  //       allBooks.push(book);
-  //     }
-  //     setIsAllBooks([...allBooks]);
-  //   });
-  //   setIsUpdating(false);
-  //   console.log('getAll ', isUpdating);
-  // }, [isUpdating]);
-  // console.log('after getAll ', isUpdating);
-
   const updateShelf = (book, isChange) => {
     console.log('updateShelf book ', book);
     const updatedBook = {
@@ -37,9 +17,7 @@ const BookList = props => {
       thumbnail: book.thumbnail,
     };
     console.log(updatedBook, 'updatedBook (){}');
-    // const filtered = isAllBooks.filter(item => item.id != book.id);
     if (updatedBook.id) setIsUpdatedBook(updatedBook);
-    // setIsAllBooks([...filtered, updatedBook]);
   };
 
   useEffect(() => {
@@ -48,9 +26,7 @@ const BookList = props => {
     setIsUpdating(true);
   }, [isUpdatedBook]);
 
-  // console.log(isAllBooks);
   console.log('===========================================');
-  // console.log(isAllBooks);
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -61,21 +37,18 @@ const BookList = props => {
         <div>
           <BookShelf
             title={'currentlyReading'}
-            // isAllBooks={isAllBooks}
             setIsUpdating={setIsUpdating}
             isUpdating={isUpdating}
             updateShelf={updateShelf}
           />
           <BookShelf
             title={'wantToRead'}
-            // isAllBooks={isAllBooks}
             setIsUpdating={setIsUpdating}
             isUpdating={isUpdating}
             updateShelf={updateShelf}
           />
           <BookShelf
             title={'read'}
-            // isAllBooks={isAllBooks}
             setIsUpdating={setIsUpdating}
             isUpdating={isUpdating}
             updateShelf={updateShelf}

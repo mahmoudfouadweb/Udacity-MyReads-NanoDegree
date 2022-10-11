@@ -26,7 +26,7 @@ const BookShelf = props => {
       props.setIsUpdating(false);
     });
     console.log('*************************');
-  }, [props.isUpdating]);
+  }, [props.isUpdating === true]);
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.title}</h2>
@@ -35,58 +35,64 @@ const BookShelf = props => {
           {props.title === 'currentlyReading'
             ? isAllUpdatedBooks
                 .filter(item => item.shelf === 'currentlyReading')
-                .map((item, i) => (
-                  <Card
-                    key={item.id}
-                    id={item.id}
-                    i={i + '0'}
-                    title={item.title}
-                    thumbnail={item.thumbnail}
-                    authors={item.authors}
-                    shelf={item.shelf}
-                    // setIsUpdating={setIsUpdating}
-                    updateShelf={props.updateShelf}
-                    isUpdatedBook={props.isUpdatedBook}
-                  />
-                ))
+                .map(item => {
+                  const { id, title, thumbnail, authors, shelf } = item;
+                  return (
+                    <Card
+                      key={id}
+                      id={id}
+                      title={title}
+                      thumbnail={thumbnail}
+                      authors={authors}
+                      shelf={shelf}
+                      isAllUpdatedBooks={isAllUpdatedBooks}
+                      updateShelf={props.updateShelf}
+                      isUpdatedBook={props.isUpdatedBook}
+                    />
+                  );
+                })
             : null}
 
           {props.title === 'wantToRead'
             ? isAllUpdatedBooks
                 .filter(item => item.shelf === 'wantToRead')
-                .map((item, i) => (
-                  <Card
-                    key={item.id}
-                    id={item.id}
-                    i={i + '1'}
-                    title={item.title}
-                    thumbnail={item.thumbnail}
-                    authors={item.authors}
-                    shelf={item.shelf}
-                    // setIsUpdating={setIsUpdating}
-                    updateShelf={props.updateShelf}
-                    isUpdatedBook={props.isUpdatedBook}
-                  />
-                ))
+                .map(item => {
+                  const { id, title, thumbnail, authors, shelf } = item;
+                  return (
+                    <Card
+                      key={id}
+                      id={id}
+                      title={title}
+                      thumbnail={thumbnail}
+                      authors={authors}
+                      shelf={shelf}
+                      isAllUpdatedBooks={isAllUpdatedBooks}
+                      updateShelf={props.updateShelf}
+                      isUpdatedBook={props.isUpdatedBook}
+                    />
+                  );
+                })
             : null}
 
           {props.title === 'read'
             ? isAllUpdatedBooks
                 .filter(item => item.shelf === 'read')
-                .map((item, i) => (
-                  <Card
-                    key={item.id}
-                    id={item.id}
-                    i={i + '2'}
-                    title={item.title}
-                    thumbnail={item.thumbnail}
-                    authors={item.authors}
-                    shelf={item.shelf}
-                    // setIsUpdating={setIsUpdating}
-                    updateShelf={props.updateShelf}
-                    isUpdatedBook={props.isUpdatedBook}
-                  />
-                ))
+                .map(item => {
+                  const { id, title, thumbnail, authors, shelf } = item;
+                  return (
+                    <Card
+                      key={id}
+                      id={id}
+                      title={title}
+                      thumbnail={thumbnail}
+                      authors={authors}
+                      shelf={shelf}
+                      isAllUpdatedBooks={isAllUpdatedBooks}
+                      updateShelf={props.updateShelf}
+                      isUpdatedBook={props.isUpdatedBook}
+                    />
+                  );
+                })
             : null}
         </ol>
       </div>
