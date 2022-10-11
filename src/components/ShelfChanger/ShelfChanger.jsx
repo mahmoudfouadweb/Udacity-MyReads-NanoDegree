@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { get, getAll, update } from '../../BooksAPI';
 import classes from './shelfChanger.module.scss';
 
-const ShelfChanger = props => {
+const ShelfChanger = ({
+  updateShelf,
+  currentBook,
+  isAllUpdatedBooks,
+  setIsAllUpdatedBooks,
+}) => {
   const [isBook, setIsBook] = useState({});
   const [isChange, setIsChange] = useState('');
 
   useEffect(() => {
-    console.log('currentBook INSIDE useEffect', props.currentBook.shelf);
+    console.log('currentBook INSIDE useEffect', currentBook.shelf);
     if (isBook.id) {
-      console.log(isBook);
-      props.updateShelf(isBook, isChange);
       console.log('done ✔', isChange);
       console.log('isBook INSIDE', isBook);
+
+      updateShelf(isBook, isChange);
+      // setIsAllUpdatedBooks([...filtered, { ...isBook, shelf: isChange }]);
     } else return;
   }, [isChange]);
 
@@ -20,7 +25,7 @@ const ShelfChanger = props => {
     console.log('CLICKED');
     console.log(e);
     setIsChange(e.target.value);
-    setIsBook(props.currentBook);
+    setIsBook(currentBook);
   };
 
   console.log('isChange after useEffect Shelf Changer', isChange);
@@ -33,9 +38,7 @@ const ShelfChanger = props => {
           e.stopPropagation();
           clickHandler(e);
         }}
-        defaultValue={
-          props.currentBook.shelf ? props.currentBook.shelf : 'none'
-        }
+        defaultValue={currentBook.shelf ? currentBook.shelf : 'none'}
       >
         <option value="disable" disabled>
           Move to...

@@ -5,7 +5,6 @@ import Card from '../Card/Card';
 
 const BookShelf = props => {
   const [isAllUpdatedBooks, setIsAllUpdatedBooks] = useState([]);
-  // const [isUpdating, setIsUpdating] = useState(false);
 
   // Just try UNCOMMENT IT NESSECERY
   useEffect(() => {
@@ -21,12 +20,30 @@ const BookShelf = props => {
         };
         allBooks.push(book);
       }
-      console.log(allBooks);
+      // console.log(allBooks);
       setIsAllUpdatedBooks([...allBooks]);
-      props.setIsUpdating(false);
+      // props.setIsUpdating(false);
     });
+    console.log(isAllUpdatedBooks);
     console.log('*************************');
-  }, [props.isUpdating === true]);
+    // the [...] is will removed after my logic and set when open search page
+  }, []);
+
+  const updateShelf = (isBook, isChange) => {
+    console.log('updateShelf BEFORE ', isBook);
+    const updatedBook = {
+      id: isBook.id,
+      shelf: isChange,
+      title: isBook.title,
+      authors: isBook.authors,
+      thumbnail: isBook.thumbnail,
+    };
+    console.log('updatedBook AFTER',updatedBook);
+    const filtered = isAllUpdatedBooks.filter(book => book.id != isBook.id);
+    setIsAllUpdatedBooks([...filtered, updatedBook]);
+    // if (updatedBook.id) setIsUpdatedBook(updatedBook);
+  };
+  console.log(isAllUpdatedBooks);
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.title}</h2>
@@ -45,9 +62,10 @@ const BookShelf = props => {
                       thumbnail={thumbnail}
                       authors={authors}
                       shelf={shelf}
+                      item={item}
+                      updateShelf={updateShelf}
+                      setIsAllUpdatedBooks={setIsAllUpdatedBooks}
                       isAllUpdatedBooks={isAllUpdatedBooks}
-                      updateShelf={props.updateShelf}
-                      isUpdatedBook={props.isUpdatedBook}
                     />
                   );
                 })
@@ -66,9 +84,10 @@ const BookShelf = props => {
                       thumbnail={thumbnail}
                       authors={authors}
                       shelf={shelf}
+                      item={item}
+                      updateShelf={updateShelf}
+                      setIsAllUpdatedBooks={setIsAllUpdatedBooks}
                       isAllUpdatedBooks={isAllUpdatedBooks}
-                      updateShelf={props.updateShelf}
-                      isUpdatedBook={props.isUpdatedBook}
                     />
                   );
                 })
@@ -87,9 +106,10 @@ const BookShelf = props => {
                       thumbnail={thumbnail}
                       authors={authors}
                       shelf={shelf}
+                      item={item}
+                      updateShelf={updateShelf}
+                      setIsAllUpdatedBooks={setIsAllUpdatedBooks}
                       isAllUpdatedBooks={isAllUpdatedBooks}
-                      updateShelf={props.updateShelf}
-                      isUpdatedBook={props.isUpdatedBook}
                     />
                   );
                 })

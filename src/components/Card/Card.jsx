@@ -2,23 +2,22 @@ import React, { useEffect, useState } from 'react';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
-const Card = props => {
-  const [isSelectedBook, setIsSelectedBook] = useState([]);
+const Card = ({
+  item,
+  setIsAllUpdatedBooks,
+  isAllUpdatedBooks,
+  updateShelf,
+  isUpdatedBook,
+}) => {
+  // const [isSelectedBook, setIsSelectedBook] = useState([]);
   // props.isAllUpdatedBooks.map(book => {
   //   if (book.id === props.id) setIsSelectedBook([book]);
   //   return book;
   // });
   // console.log(isSelectedBook);
-  
-  const currentBook = {
-    id: props.id,
-    title: props.title,
-    thumbnail: props.thumbnail,
-    authors: props.authors,
-    shelf: props.shelf,
-  };
+
   const render = (
-    <li key={props.id} id={props.id}>
+    <li key={item.id} id={item.id}>
       <div className="book">
         <div className="book-top">
           <div
@@ -26,20 +25,20 @@ const Card = props => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${props.thumbnail})`,
+              backgroundImage: `url(${item.thumbnail})`,
             }}
           ></div>
           <ShelfChanger
-            setIsUpdating={props.setIsUpdating}
-            isChange={props.isChange}
-            key={props.id}
-            updateShelf={props.updateShelf}
-            currentBook={currentBook}
-            isUpdatedBoo={props.isUpdatedBook}
+            key={item.id}
+            updateShelf={updateShelf}
+            currentBook={item}
+            isUpdatedBook={isUpdatedBook}
+            isAllUpdatedBooks={isAllUpdatedBooks}
+            setIsAllUpdatedBooks={setIsAllUpdatedBooks}
           />
         </div>
-        <div className="book-title">{props.title}</div>
-        <div className="book-authors">{props.authors}</div>
+        <div className="book-title">{item.title}</div>
+        <div className="book-authors">{item.authors}</div>
       </div>
     </li>
   );
