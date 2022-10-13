@@ -15,24 +15,29 @@ function App() {
     };
     allBooks();
 
-    return () => {
-      isAllBooks.filter(book => console.log(book));
-    };
+    // return () => {
+    //   isAllBooks.filter(book => console.log(book));
+    // };
   }, []);
   console.log(isAllBooks);
   const searchHandler = close => {
     setShowSearchpage(close);
   };
 
-  const updateBookShelf = (currentBook, isChange) => {
-    const book = {
-      id: currentBook.id,
-      title: currentBook.title,
-      author: currentBook.authors,
-      thumbnail:currentBook.thumbnail
-    }
+  const updateBookShelf = (book, isChange) => {
+    console.log(book);
+    const currentBook = {
+      id: book.id,
+      title: book.title,
+      author: book.authors,
+      imageLinks: {
+        smallThumbnail: book.imageLinks.smallThumbnail,
+      },
+      shelf: isChange,
+    };
+    console.log(currentBook);
     const filterBooks = isAllBooks.filter(book => book.id != currentBook.id);
-    setIsAllBooks([...filterBooks, { ...currentBook, shelf: isChange }]);
+    setIsAllBooks([...filterBooks, currentBook]);
   };
 
   const getSingleBookHandler = id => {

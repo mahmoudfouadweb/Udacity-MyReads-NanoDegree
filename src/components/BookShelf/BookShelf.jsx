@@ -9,7 +9,7 @@ const BookShelf = ({
   setIsAllBooks,
   updateBookShelf,
 }) => {
-  const [isAllUpdatedBooks, setIsAllUpdatedBooks] = useState([]);
+  // const [isAllUpdatedBooks, setIsAllUpdatedBooks] = useState([]);
 
   return (
     <div className="bookshelf">

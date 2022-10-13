@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import classes from './shelfChanger.module.scss';
 
 const ShelfChanger = ({ book, updateBookShelf }) => {
-  const [isChange, setIsChange] = useState('none');
+  const [isChange, setIsChange] = useState('');
   const onChangeHandler = target => {
     setIsChange(target);
   };
-  if (!isChange === '') updateBookShelf(book, isChange);
+  useEffect(() => {
+    if (isChange != '') updateBookShelf(book, isChange);
+  }, [isChange]);
   console.log(isChange);
   return (
     <div className="book-shelf-changer">
