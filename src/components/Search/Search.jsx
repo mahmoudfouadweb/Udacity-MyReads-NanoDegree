@@ -1,14 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { search } from '../../BooksAPI';
+import * as bookAPI from '../../BooksAPI';
 import Card from '../Card/Card';
 import classes from './search.module.scss';
 
-const Search = ({ toggleShowSearchButton, isChange }) => {
+const Search = ({
+  toggleShowSearchButton,
+  isChange,
+  isAllBooks,
+  setIsAllBooks,
+}) => {
   const [searchItem, setSearchItem] = useState([]);
   const [searchContent, setSearchContent] = useState('');
 
   const userInput = e => {
-    setSearchContent(e.currentTarget.value);
+    setSearchContent(e.currentTarget.value.trim());
+    console.log(e.currentTarget.value.trim());
+  };
+
+  useEffect(() => {
+    bookAPI.search(searchContent).then(data => {
+      console.log(data);
+      setSearchItem([...data]);
+    });
+  }, [searchContent]);
+
+  const onClick = currentBook => {
+    // setIsAllBooks([isAllBooks.filter(book => book.id != currentBook.id), ])
   };
 
   return (
@@ -45,6 +62,7 @@ const Search = ({ toggleShowSearchButton, isChange }) => {
                 thumbnail={item.imageLinks.thumbnail}
                 authors={item.authors}
                 onChange={isChange}
+                onClick={onClick}
               />
             ))}
         </ol>

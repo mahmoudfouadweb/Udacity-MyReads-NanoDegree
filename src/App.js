@@ -24,7 +24,10 @@ function App() {
     setShowSearchpage(close);
   };
 
-  const updateBookShelf = id => {};
+  const updateBookShelf = (currentBook, isChange) => {
+    const filterBooks = isAllBooks.filter(book => book.id != currentBook.id);
+    setIsAllBooks([...filterBooks, { ...currentBook, shelf: isChange }]);
+  };
 
   const getSingleBookHandler = id => {
     const getBook = async () => {
@@ -37,12 +40,17 @@ function App() {
   return (
     <div className="app">
       {showSearchPage ? (
-        <Search toggleShowSearchButton={searchHandler} />
+        <Search
+          toggleShowSearchButton={searchHandler}
+          isAllBooks={isAllBooks}
+          updateBookShelf={updateBookShelf}
+        />
       ) : (
         <BookList
           toggleShowSearchButton={searchHandler}
           isAllBooks={isAllBooks}
-          
+          setIsAllBooks={setIsAllBooks}
+          updateBookShelf={updateBookShelf}
         />
       )}
     </div>

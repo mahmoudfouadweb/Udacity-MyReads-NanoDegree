@@ -6,7 +6,6 @@ import Card from '../Card/Card';
 const BookShelf = props => {
   const [isAllUpdatedBooks, setIsAllUpdatedBooks] = useState([]);
 
-  // Just try UNCOMMENT IT NESSECERY
   useEffect(() => {
     getAll().then(data => {
       const allBooks = [];

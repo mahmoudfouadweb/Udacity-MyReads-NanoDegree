@@ -3,11 +3,12 @@ import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
 const Card = ({
-  item,
+  book,
   setIsAllUpdatedBooks,
   isAllUpdatedBooks,
   updateShelf,
   isUpdatedBook,
+  
 }) => {
   // const [isSelectedBook, setIsSelectedBook] = useState([]);
   // props.isAllUpdatedBooks.map(book => {
@@ -17,7 +18,7 @@ const Card = ({
   // console.log(isSelectedBook);
 
   const render = (
-    <li key={item.id} id={item.id}>
+    <li key={book.id} id={book.id}>
       <div className="book">
         <div className="book-top">
           <div
@@ -25,20 +26,20 @@ const Card = ({
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${item.thumbnail})`,
+              backgroundImage: `url(${book.thumbnail})`,
             }}
           ></div>
           <ShelfChanger
-            key={item.id}
+            key={book.id}
             updateShelf={updateShelf}
-            currentBook={item}
+            currentBook={book}
             isUpdatedBook={isUpdatedBook}
             isAllUpdatedBooks={isAllUpdatedBooks}
             setIsAllUpdatedBooks={setIsAllUpdatedBooks}
           />
         </div>
-        <div className="book-title">{item.title}</div>
-        <div className="book-authors">{item.authors}</div>
+        <div className="book-title">{book.title}</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
     </li>
   );

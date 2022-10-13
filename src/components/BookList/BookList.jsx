@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { getAll, update } from '../../BooksAPI';
 import BookShelf from '../BookShelf/BookShelf';
+import PropType from 'prop-types';
 
-const BookList = props => {
-  const [isUpdatedBook, setIsUpdatedBook] = useState([]);
-
-  useEffect(() => {
-    if (!isUpdatedBook.id) return;
-    update(isUpdatedBook, isUpdatedBook.shelf);
-    // setIsUpdating(true);
-  }, []);
-
+const BookList = ({
+  isAllBooks,
+  toggleShowSearchButton,
+  setIsAllBooks,
+  updateBookShelf,
+}) => {
   console.log('===========================================');
   return (
     <div className="list-books">
@@ -20,18 +18,37 @@ const BookList = props => {
 
       <div className="list-books-content">
         <div>
-          <BookShelf title={'currentlyReading'} />
-          <BookShelf title={'wantToRead'} />
-          <BookShelf title={'read'} />
+          <BookShelf
+            shelfTitle={'currentlyReading'}
+            isAllBooks={isAllBooks}
+            setIsAllBooks={setIsAllBooks}
+            updateBookShelf={updateBookShelf}
+          />
+          <BookShelf
+            shelfTitle={'wantToRead'}
+            isAllBooks={isAllBooks}
+            setIsAllBooks={setIsAllBooks}
+            updateBookShelf={updateBookShelf}
+          />
+          <BookShelf
+            shelfTitle={'read'}
+            isAllBooks={isAllBooks}
+            setIsAllBooks={setIsAllBooks}
+            updateBookShelf={updateBookShelf}
+          />
         </div>
       </div>
       <div className="open-search">
-        <a href="#" onClick={() => props.toggleShowSearchButton(!false)}>
+        <a href="#" onClick={() => toggleShowSearchButton(!false)}>
           Add a book
         </a>
       </div>
     </div>
   );
+};
+BookList.prototype = {
+  isAllBooks: PropType.array.isRequired,
+  onUpdate: PropType.func.isRequired,
 };
 
 export default BookList;
