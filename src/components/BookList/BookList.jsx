@@ -10,6 +10,8 @@ const BookList = ({
   updateBookShelf,
 }) => {
   console.log('===========================================');
+
+  const shelfs = ['currentlyReading', 'wantToRead', 'read'];
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -18,24 +20,15 @@ const BookList = ({
 
       <div className="list-books-content">
         <div>
-          <BookShelf
-            shelfTitle={'currentlyReading'}
-            isAllBooks={isAllBooks}
-            setIsAllBooks={setIsAllBooks}
-            updateBookShelf={updateBookShelf}
-          />
-          <BookShelf
-            shelfTitle={'wantToRead'}
-            isAllBooks={isAllBooks}
-            setIsAllBooks={setIsAllBooks}
-            updateBookShelf={updateBookShelf}
-          />
-          <BookShelf
-            shelfTitle={'read'}
-            isAllBooks={isAllBooks}
-            setIsAllBooks={setIsAllBooks}
-            updateBookShelf={updateBookShelf}
-          />
+          {shelfs.map(shelf => (
+            <BookShelf
+              key={shelf}
+              shelfTitle={shelf}
+              isAllBooks={isAllBooks}
+              setIsAllBooks={setIsAllBooks}
+              updateBookShelf={updateBookShelf}
+            />
+          ))}
         </div>
       </div>
       <div className="open-search">
