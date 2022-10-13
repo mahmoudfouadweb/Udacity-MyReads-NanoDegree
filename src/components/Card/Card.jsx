@@ -2,17 +2,9 @@ import React from 'react';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 import classes from './card.module.scss';
 
-const Card = ({
-  id,
-  title,
-  thumbnail,
-  authors,
-  shelf,
-  updateBookShelf,
-  book,
-}) => {
+const Card = ({ updateBookShelf, book }) => {
   const render = (
-    <li id={id}>
+    <li id={book.id}>
       <div className="book">
         <div className="book-top">
           <div
@@ -20,13 +12,17 @@ const Card = ({
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${thumbnail})`,
+              backgroundImage: `url(${book.imageLinks.smallThumbnail})`,
             }}
           ></div>
-          <ShelfChanger key={id} onClick={updateBookShelf} />
+          <ShelfChanger
+            key={book.id}
+            updateBookShelf={updateBookShelf}
+            book={book}
+          />
         </div>
-        <div className="book-title">{title}</div>
-        <div className="book-authors">{authors}</div>
+        <div className="book-title">{book.title}</div>
+        <div className="book-authors">{book.authors}</div>
       </div>
     </li>
   );

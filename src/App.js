@@ -25,6 +25,12 @@ function App() {
   };
 
   const updateBookShelf = (currentBook, isChange) => {
+    const book = {
+      id: currentBook.id,
+      title: currentBook.title,
+      author: currentBook.authors,
+      thumbnail:currentBook.thumbnail
+    }
     const filterBooks = isAllBooks.filter(book => book.id != currentBook.id);
     setIsAllBooks([...filterBooks, { ...currentBook, shelf: isChange }]);
   };

@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import classes from './shelfChanger.module.scss';
 
-const ShelfChanger = () => {
+const ShelfChanger = ({ book, updateBookShelf }) => {
+  const [isChange, setIsChange] = useState('none');
+  const onChangeHandler = target => {
+    setIsChange(target);
+  };
+  if (!isChange === '') updateBookShelf(book, isChange);
+  console.log(isChange);
   return (
     <div className="book-shelf-changer">
-      <select defaultValue={'none'}>
+      <select
+        defaultValue={book.shelf}
+        onChange={e => onChangeHandler(e.target.value)}
+      >
         <option value="disable" disabled>
           Move to...
         </option>

@@ -18,21 +18,13 @@ const BookShelf = ({
         <ol className="books-grid">
           {isAllBooks
             .filter(item => item.shelf === shelfTitle)
-            .map(book => {
-              const { id, title, imageLinks, authors, shelf } = book;
-              return (
-                <Card
-                  key={id}
-                  id={id}
-                  thumbnail={imageLinks.smallThumbnail}
-                  title={title}
-                  author={authors}
-                  shelf={shelf}
-                  updateBookShelf={updateBookShelf}
-                  book={book}
-                />
-              );
-            })}
+            .map(book => (
+              <Card
+                key={book.id}
+                updateBookShelf={updateBookShelf}
+                book={book}
+              />
+            ))}
         </ol>
       </div>
     </div>
