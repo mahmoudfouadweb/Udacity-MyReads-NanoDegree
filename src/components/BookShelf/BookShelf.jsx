@@ -16,25 +16,23 @@ const BookShelf = ({
       <h2 className="bookshelf-title">{shelfTitle}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {shelfTitle === shelfTitle
-            ? isAllBooks.filter(item=> item.shelf === shelfTitle).map(book => {
-                
-                  const { id, title, imageLinks, authors, shelf } = book;
-                  return (
-                    <Card
-                      key={id}
-                      id={id}
-                      thumbnail={imageLinks.smallThumbnail}
-                      title={title}
-                      author={authors}
-                      shelf={shelf}
-                      updateBookShelf={updateBookShelf}
-                      book={book}
-                    />
-                  );
-                
-              })
-            : null}
+          {isAllBooks
+            .filter(item => item.shelf === shelfTitle)
+            .map(book => {
+              const { id, title, imageLinks, authors, shelf } = book;
+              return (
+                <Card
+                  key={id}
+                  id={id}
+                  thumbnail={imageLinks.smallThumbnail}
+                  title={title}
+                  author={authors}
+                  shelf={shelf}
+                  updateBookShelf={updateBookShelf}
+                  book={book}
+                />
+              );
+            })}
         </ol>
       </div>
     </div>
