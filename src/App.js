@@ -7,7 +7,7 @@ import * as bookAPI from './BooksAPI';
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [isAllBooks, setIsAllBooks] = useState([]);
-
+  const [isUpdatedBook, setIsUpdatedBook] = useState();
   useEffect(() => {
     const allBooks = async () => {
       const res = await bookAPI.getAll();
@@ -19,6 +19,10 @@ function App() {
   const searchHandler = close => {
     setShowSearchpage(close);
   };
+
+  useEffect(() => {
+    if (isUpdatedBook) bookAPI.update(isUpdatedBook, isUpdatedBook.shelf);
+  }, [isUpdatedBook]);
 
   const updateBookShelf = (book, isChange) => {
     console.log(book);
@@ -32,6 +36,7 @@ function App() {
       shelf: isChange,
     };
     console.log(currentBook);
+    setIsUpdatedBook(currentBook);
     const filterBooks = isAllBooks.filter(book => book.id != currentBook.id);
     setIsAllBooks([...filterBooks, currentBook]);
   };
