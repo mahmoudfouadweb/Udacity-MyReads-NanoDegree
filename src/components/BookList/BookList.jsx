@@ -3,7 +3,6 @@ import { getAll, update } from '../../BooksAPI';
 import BookShelf from '../BookShelf/BookShelf';
 
 const BookList = props => {
-  // const [isUpdating, setIsUpdating] = useState(false);
   const [isUpdatedBook, setIsUpdatedBook] = useState([]);
 
   useEffect(() => {
