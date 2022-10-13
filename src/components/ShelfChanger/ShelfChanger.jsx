@@ -6,9 +6,11 @@ const ShelfChanger = ({ book, updateBookShelf }) => {
   const onChangeHandler = target => {
     setIsChange(target);
   };
+  
   useEffect(() => {
     if (isChange != '') updateBookShelf(book, isChange);
   }, [isChange]);
+  
   console.log(isChange);
   return (
     <div className="book-shelf-changer">

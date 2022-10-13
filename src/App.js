@@ -14,10 +14,6 @@ function App() {
       setIsAllBooks(res);
     };
     allBooks();
-
-    // return () => {
-    //   isAllBooks.filter(book => console.log(book));
-    // };
   }, []);
   console.log(isAllBooks);
   const searchHandler = close => {

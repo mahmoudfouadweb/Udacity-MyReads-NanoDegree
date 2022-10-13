@@ -3,14 +3,7 @@ import { getAll, update } from '../../BooksAPI';
 import Card from '../Card/Card';
 // import classes from './bookShelf.module.scss';
 
-const BookShelf = ({
-  shelfTitle,
-  isAllBooks,
-  setIsAllBooks,
-  updateBookShelf,
-}) => {
-  // const [isAllUpdatedBooks, setIsAllUpdatedBooks] = useState([]);
-
+const BookShelf = ({ shelfTitle, isAllBooks, updateBookShelf }) => {
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{shelfTitle}</h2>

@@ -3,12 +3,7 @@ import { getAll, update } from '../../BooksAPI';
 import BookShelf from '../BookShelf/BookShelf';
 import PropType from 'prop-types';
 
-const BookList = ({
-  isAllBooks,
-  toggleShowSearchButton,
-  setIsAllBooks,
-  updateBookShelf,
-}) => {
+const BookList = ({ isAllBooks, toggleShowSearchButton, updateBookShelf }) => {
   console.log('===========================================');
 
   const shelfs = ['currentlyReading', 'wantToRead', 'read'];
@@ -25,7 +20,6 @@ const BookList = ({
               key={shelf}
               shelfTitle={shelf}
               isAllBooks={isAllBooks}
-              setIsAllBooks={setIsAllBooks}
               updateBookShelf={updateBookShelf}
             />
           ))}
