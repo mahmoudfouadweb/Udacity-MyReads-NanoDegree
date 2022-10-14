@@ -8,7 +8,6 @@ import './App.scss';
 function App() {
   /////////////////////////////////////////////////
   // STATS FOR COMPONENTS CONTROL
-  const [showSearchPage, setShowSearchpage] = useState(false);
   const [isAllBooks, setIsAllBooks] = useState([]);
   const [isUpdatedBook, setIsUpdatedBook] = useState();
   const [booksID, setBooksID] = useState([]);
@@ -29,6 +28,7 @@ function App() {
   useEffect(() => {
     if (isUpdatedBook) bookAPI.update(isUpdatedBook, isUpdatedBook.shelf);
   }, [isUpdatedBook]);
+
   /////////////////////////////////////////////////
   // CLICKED BOOK UPDATE SHELF TYPE HANDLER
   const updateBookShelf = (book, isChange) => {
@@ -37,36 +37,37 @@ function App() {
       ...book,
       shelf: isChange,
     };
-
     // REMOVE OLD DATA BOOKS AND SET UPDATED ITEMS
     setIsUpdatedBook(currentBook);
     const filterBooks = isAllBooks.filter(book => book.id != currentBook.id);
     setIsAllBooks([...filterBooks, currentBook]);
   };
 
-  /////////////////////////////////////////////////
-  // CLOSE BUTTON HANDLER
-  const searchHandler = close => {
-    setShowSearchpage(close);
-  };
-
   return (
     <BrowserRouter>
       <div className="app">
-        {/* // SEARCH PAGE */}
-        <Search
-          toggleShowSearchButton={searchHandler}
-          isAllBooks={isAllBooks}
-          booksID={booksID}
-          updateBookShelf={updateBookShelf}
-        />
-        {/* // MY BOOKS PAGE */}
-        <BookList
-          toggleShowSearchButton={searchHandler}
-          isAllBooks={isAllBooks}
-          updateBookShelf={updateBookShelf}
-        />
-        )
+        <Routes>
+          <Route
+            path="/search"
+            element={
+              <Search
+                isAllBooks={isAllBooks}
+                booksID={booksID}
+                updateBookShelf={updateBookShelf}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <BookList
+                isAllBooks={isAllBooks}
+                updateBookShelf={updateBookShelf}
+              />
+            }
+          />
+        </Routes>
       </div>
     </BrowserRouter>
   );

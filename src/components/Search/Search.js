@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as bookAPI from '../../BooksAPI';
 import Card from '../Card/Card';
 
-const Search = ({
-  toggleShowSearchButton,
-  updateBookShelf,
-  isAllBooks,
-  booksID,
-}) => {
+const Search = ({ updateBookShelf, isAllBooks, booksID }) => {
   ////////////////////////////////////////////////
   // STATS FOR SEARCH COMPONENTS CONTROL
   const [searchItem, setSearchItem] = useState([]);
@@ -48,12 +44,9 @@ const Search = ({
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a
-          className="close-search"
-          onClick={() => toggleShowSearchButton(!true)}
-        >
-          Close
-        </a>
+        <Link to="/" className="close-search">
+          close
+        </Link>
         <div className="search-books-input-wrapper">
           <input
             value={searchContent}
