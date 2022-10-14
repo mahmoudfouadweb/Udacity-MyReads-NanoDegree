@@ -1,6 +1,6 @@
 # UDACITY's - REACT - My Reads App
 
-The final project for REACT fundamentals course.
+The final project for REACT NanoDegree.
 
 ## ABOUT
 
