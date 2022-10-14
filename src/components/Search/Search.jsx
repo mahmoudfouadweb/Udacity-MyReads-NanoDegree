@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as bookAPI from '../../BooksAPI';
 import Card from '../Card/Card';
-import classes from './search.module.scss';
 
 const Search = ({
   toggleShowSearchButton,
@@ -9,63 +8,38 @@ const Search = ({
   isAllBooks,
   booksID,
 }) => {
+  // STATS FOR SEARCH COMPONENTS CONTROL
   const [searchItem, setSearchItem] = useState([]);
   const [searchContent, setSearchContent] = useState('');
   const [isNotFound, setIsNotFound] = useState('');
 
+  //GET USER INPUT
   const userInput = e => {
     setSearchContent(e.target.value);
     console.log(e.currentTarget.value);
   };
 
+  // REQUIRE A USER INPUT A TEXT AS DEPENDENCIES TO SEARCH
   useEffect(() => {
+    // IF USER INPUT A TEXT
     if (searchContent)
-      bookAPI
-        .search(searchContent)
-        .then(data => {
-          // console.log(data);
-          if (data.error) {
-            setIsNotFound(data.error);
-          } else {
-            setIsNotFound('');
-            const filteredCurrent = isAllBooks.filter(bok =>
-              data.some(x => x.id === bok.id)
-            );
-            const da = data.filter(d => !booksID.includes(d.id));
-            console.log(booksID);
-            console.log(da);
-            setSearchItem([ ...filteredCurrent,...da]);
-            // console.log(filteredCurrent);
-            // const filteredSearched = data.filter(
-            //   x => x.id != filteredCurrent.includes(x.id)
-            // );
-            fn(data, filteredCurrent);
-            console.log(fn(data, filteredCurrent));
-            // console.log(filteredSearched);
-          }
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      bookAPI.search(searchContent).then(data => {
+        // IF NOT FOUNDED AN ITEM
+        if (data.error) {
+          // AN ERROR MESSAGE TO THE USER
+          setIsNotFound(data.error);
+        } else {
+          //REMOVE USER MESSAGE
+          setIsNotFound('');
+          // UPDATE PAGE UI
+          setSearchItem([
+            ...isAllBooks.filter(bok => data.some(x => x.id === bok.id)),
+            ...data.filter(d => !booksID.includes(d.id)),
+          ]);
+        }
+      });
   }, [searchContent]);
 
-  const searchBookHandel = currentSearchedBook => {
-    const filteredSearch = searchItem.filter(
-      book => book.id != currentSearchedBook.id
-    );
-    setSearchItem([...filteredSearch, currentSearchedBook]);
-
-    console.log(filteredSearch);
-    console.log(currentSearchedBook);
-  };
-  console.log(searchItem);
-
-  const fn = (array, filtered) => {
-    return [
-      ...array.filter(x => !filtered.includes(x)),
-      ...filtered.filter(x => !array.includes(x)),
-    ];
-  };
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -86,9 +60,7 @@ const Search = ({
           />
         </div>
       </div>
-      {/* <div className={classes.erro}>
-        <p>Book not found</p>
-      </div> */}
+
       <div className="search-books-results">
         <ol className="books-grid">
           {!isNotFound
@@ -97,8 +69,6 @@ const Search = ({
                   key={book.id}
                   book={book}
                   updateBookShelf={updateBookShelf}
-                  searchBookHandel={searchBookHandel}
-                  isAllBooks={isAllBooks}
                 />
               ))
             : isNotFound}

@@ -1,10 +1,8 @@
 import React from 'react';
 import BookShelf from '../BookShelf/BookShelf';
-import PropType from 'prop-types';
 
 const BookList = ({ isAllBooks, toggleShowSearchButton, updateBookShelf }) => {
-  console.log('===========================================');
-
+  // SHELFS TYPES
   const shelfs = ['currentlyReading', 'wantToRead', 'read'];
   return (
     <div className="list-books">
@@ -31,10 +29,6 @@ const BookList = ({ isAllBooks, toggleShowSearchButton, updateBookShelf }) => {
       </div>
     </div>
   );
-};
-BookList.prototype = {
-  isAllBooks: PropType.array.isRequired,
-  onUpdate: PropType.func.isRequired,
 };
 
 export default BookList;

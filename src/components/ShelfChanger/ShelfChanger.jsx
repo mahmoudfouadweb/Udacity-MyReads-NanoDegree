@@ -1,30 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import classes from './shelfChanger.module.scss';
 
-const ShelfChanger = ({
-  book,
-  updateBookShelf,
-  searchBookHandel,
-  isAllBooks,
-}) => {
+const ShelfChanger = ({ book, updateBookShelf }) => {
+  // CHANGED SHELF STATUS
   const [isChange, setIsChange] = useState('');
+
+  // WHEN USER CLICKED A BOOK'S SHELF TYPE
   const onChangeHandler = target => {
     setIsChange(target);
   };
 
+  // UPDATE BOOK'S SHELF TYPE
   useEffect(() => {
     if (isChange != '') updateBookShelf(book, isChange);
   }, [isChange]);
 
-  useEffect(() => {
-    if (book.shelf == false) {
-      const currentBk = isAllBooks.filter(item => item.id === book.id);
-      searchBookHandel(currentBk[0]);
-      console.log(currentBk);
-    }
-  }, []);
-
-  console.log(isChange);
   return (
     <div className="book-shelf-changer">
       <select

@@ -1,6 +1,5 @@
 import React from 'react';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
-import classes from './card.module.scss';
 
 const Card = ({ updateBookShelf, book, searchBookHandel, isAllBooks }) => {
   const render = (
@@ -19,7 +18,7 @@ const Card = ({ updateBookShelf, book, searchBookHandel, isAllBooks }) => {
             key={book.id}
             updateBookShelf={updateBookShelf}
             book={book}
-            searchBookHandel={searchBookHandel}
+            // searchBookHandel={searchBookHandel}
             isAllBooks={isAllBooks}
           />
         </div>
