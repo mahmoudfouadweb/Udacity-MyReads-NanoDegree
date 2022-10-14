@@ -8,10 +8,13 @@ function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
   const [isAllBooks, setIsAllBooks] = useState([]);
   const [isUpdatedBook, setIsUpdatedBook] = useState();
+  const [booksID, setBooksID] = useState([]);
+
   useEffect(() => {
     const allBooks = async () => {
       const res = await bookAPI.getAll();
       setIsAllBooks(res);
+      setBooksID(res.map(b => b.id));
     };
     allBooks();
   }, []);
@@ -41,20 +44,13 @@ function App() {
     setIsAllBooks([...filterBooks, currentBook]);
   };
 
-  const getSingleBookHandler = id => {
-    const getBook = async () => {
-      const res = bookAPI.get(id);
-      setIsAllBooks([...isAllBooks, res]);
-    };
-    getBook();
-  };
-
   return (
     <div className="app">
       {showSearchPage ? (
         <Search
           toggleShowSearchButton={searchHandler}
           isAllBooks={isAllBooks}
+          booksID={booksID}
           updateBookShelf={updateBookShelf}
         />
       ) : (

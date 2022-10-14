@@ -16,6 +16,7 @@ const BookShelf = ({ shelfTitle, isAllBooks, updateBookShelf }) => {
                 key={book.id}
                 updateBookShelf={updateBookShelf}
                 book={book}
+                isAllBooks={isAllBooks}
               />
             ))}
         </ol>

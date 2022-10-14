@@ -5,29 +5,67 @@ import classes from './search.module.scss';
 
 const Search = ({
   toggleShowSearchButton,
-  isChange,
+  updateBookShelf,
   isAllBooks,
-  setIsAllBooks,
+  booksID,
 }) => {
   const [searchItem, setSearchItem] = useState([]);
   const [searchContent, setSearchContent] = useState('');
+  const [isNotFound, setIsNotFound] = useState('');
 
   const userInput = e => {
-    setSearchContent(e.currentTarget.value.trim());
-    console.log(e.currentTarget.value.trim());
+    setSearchContent(e.target.value);
+    console.log(e.currentTarget.value);
   };
 
   useEffect(() => {
-    bookAPI.search(searchContent).then(data => {
-      console.log(data);
-      setSearchItem([...data]);
-    });
+    if (searchContent)
+      bookAPI
+        .search(searchContent)
+        .then(data => {
+          // console.log(data);
+          if (data.error) {
+            setIsNotFound(data.error);
+          } else {
+            setIsNotFound('');
+            const filteredCurrent = isAllBooks.filter(bok =>
+              data.some(x => x.id === bok.id)
+            );
+            const da = data.filter(d => !booksID.includes(d.id));
+            console.log(booksID);
+            console.log(da);
+            setSearchItem([...da, ...filteredCurrent]);
+            // console.log(filteredCurrent);
+            // const filteredSearched = data.filter(
+            //   x => x.id != filteredCurrent.includes(x.id)
+            // );
+            fn(data, filteredCurrent);
+            console.log(fn(data, filteredCurrent));
+            // console.log(filteredSearched);
+          }
+        })
+        .catch(e => {
+          console.log(e);
+        });
   }, [searchContent]);
 
-  const onClick = currentBook => {
-    // setIsAllBooks([isAllBooks.filter(book => book.id != currentBook.id), ])
-  };
+  const searchBookHandel = currentSearchedBook => {
+    const filteredSearch = searchItem.filter(
+      book => book.id != currentSearchedBook.id
+    );
+    setSearchItem([...filteredSearch, currentSearchedBook]);
 
+    console.log(filteredSearch);
+    console.log(currentSearchedBook);
+  };
+  console.log(searchItem);
+
+  const fn = (array, filtered) => {
+    return [
+      ...array.filter(x => !filtered.includes(x)),
+      ...filtered.filter(x => !array.includes(x)),
+    ];
+  };
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -53,18 +91,17 @@ const Search = ({
       </div> */}
       <div className="search-books-results">
         <ol className="books-grid">
-          {searchContent &&
-            searchItem.map(item => (
-              <Card
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                thumbnail={item.imageLinks.thumbnail}
-                authors={item.authors}
-                onChange={isChange}
-                onClick={onClick}
-              />
-            ))}
+          {!isNotFound
+            ? searchItem.map(book => (
+                <Card
+                  key={book.id}
+                  book={book}
+                  updateBookShelf={updateBookShelf}
+                  searchBookHandel={searchBookHandel}
+                  isAllBooks={isAllBooks}
+                />
+              ))
+            : isNotFound}
         </ol>
       </div>
     </div>
