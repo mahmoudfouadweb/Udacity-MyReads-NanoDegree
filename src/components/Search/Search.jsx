@@ -34,7 +34,7 @@ const Search = ({
             const da = data.filter(d => !booksID.includes(d.id));
             console.log(booksID);
             console.log(da);
-            setSearchItem([...da, ...filteredCurrent]);
+            setSearchItem([ ...filteredCurrent,...da]);
             // console.log(filteredCurrent);
             // const filteredSearched = data.filter(
             //   x => x.id != filteredCurrent.includes(x.id)
