@@ -27,7 +27,7 @@ And the search page: 'localhost:3000' renders the result of the searched books a
 - GitHub
 - Bash
 
-##### I will
+##### I will expand and implement styles in version 1.0.0
 
 ## Installation
 
