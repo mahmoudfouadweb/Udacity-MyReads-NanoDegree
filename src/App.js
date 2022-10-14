@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import * as bookAPI from './BooksAPI';
 import Search from './components/Search/Search';
 import BookList from './components/BookList/BookList';
@@ -11,7 +12,7 @@ function App() {
   const [isAllBooks, setIsAllBooks] = useState([]);
   const [isUpdatedBook, setIsUpdatedBook] = useState();
   const [booksID, setBooksID] = useState([]);
-  
+
   /////////////////////////////////////////////////
   // GET ALL MY BOOKS WITH NO DEPENDENCIES
   useEffect(() => {
@@ -50,24 +51,24 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {showSearchPage ? (
-        // SEARCH PAGE
+    <BrowserRouter>
+      <div className="app">
+        {/* // SEARCH PAGE */}
         <Search
           toggleShowSearchButton={searchHandler}
           isAllBooks={isAllBooks}
           booksID={booksID}
           updateBookShelf={updateBookShelf}
         />
-      ) : (
-        // MY BOOKS PAGE
+        {/* // MY BOOKS PAGE */}
         <BookList
           toggleShowSearchButton={searchHandler}
           isAllBooks={isAllBooks}
           updateBookShelf={updateBookShelf}
         />
-      )}
-    </div>
+        )
+      </div>
+    </BrowserRouter>
   );
 }
 
