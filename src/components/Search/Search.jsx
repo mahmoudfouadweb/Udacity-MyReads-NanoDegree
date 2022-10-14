@@ -18,7 +18,7 @@ const Search = ({
   // REQUIRE A USER INPUT A TEXT AS DEPENDENCIES TO SEARCH
   useEffect(() => {
     // IF USER INPUT A TEXT
-    if (searchContent)
+    if (searchContent != '') {
       bookAPI.search(searchContent).then(data => {
         // IF NOT FOUNDED AN ITEM
         if (data.error) {
@@ -34,12 +34,14 @@ const Search = ({
           ]);
         }
       });
+      // if user type nothing
+    } else if (searchContent.trim() === '') setSearchItem([]);
   }, [searchContent]);
 
   ////////////////////////////////////////////////
   //GET USER INPUT
   const userInput = e => {
-    setSearchContent(e.target.value);
+    setSearchContent(e.target.value.trim());
     console.log(e.currentTarget.value);
   };
 
