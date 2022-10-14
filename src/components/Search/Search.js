@@ -14,17 +14,17 @@ const Search = ({ updateBookShelf, isAllBooks, booksID }) => {
   // REQUIRE A USER INPUT A TEXT AS DEPENDENCIES TO SEARCH
   useEffect(() => {
     // IF USER INPUT A TEXT
-    if (searchContent != '') {
+    if (searchContent.trim() != '') {
       bookAPI.search(searchContent).then(data => {
         // IF NOT FOUNDED AN ITEM
         if (data.error) {
           // AN ERROR MESSAGE TO THE USER
-          setIsNotFound(data.error);
+          return setIsNotFound(data.error);
         } else {
           //REMOVE USER MESSAGE
           setIsNotFound('');
           // UPDATE PAGE UI
-          setSearchItem([
+          return setSearchItem([
             ...isAllBooks.filter(bok => data.some(x => x.id === bok.id)),
             ...data.filter(d => !booksID.includes(d.id)),
           ]);
@@ -37,8 +37,7 @@ const Search = ({ updateBookShelf, isAllBooks, booksID }) => {
   ////////////////////////////////////////////////
   //GET USER INPUT
   const userInput = e => {
-    setSearchContent(e.target.value.trim());
-    console.log(e.currentTarget.value);
+    setSearchContent(e.target.value);
   };
 
   return (
