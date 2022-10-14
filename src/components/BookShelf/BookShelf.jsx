@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../Card/Card';
-// import classes from './bookShelf.module.scss';
 
 const BookShelf = ({ shelfTitle, isAllBooks, updateBookShelf }) => {
   return (
@@ -15,7 +14,6 @@ const BookShelf = ({ shelfTitle, isAllBooks, updateBookShelf }) => {
                 key={book.id}
                 updateBookShelf={updateBookShelf}
                 book={book}
-                isAllBooks={isAllBooks}
               />
             ))}
         </ol>

@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 
 const ShelfChanger = ({ book, updateBookShelf }) => {
+  ////////////////////////////////////////////////
   // CHANGED SHELF STATUS
   const [isChange, setIsChange] = useState('');
 
-  // WHEN USER CLICKED A BOOK'S SHELF TYPE
-  const onChangeHandler = target => {
-    setIsChange(target);
-  };
-
+  ////////////////////////////////////////////////
   // UPDATE BOOK'S SHELF TYPE
   useEffect(() => {
     if (isChange != '') updateBookShelf(book, isChange);
   }, [isChange]);
+
+  ////////////////////////////////////////////////
+  // WHEN USER CLICKED A BOOK'S SHELF TYPE
+  const onChangeHandler = target => {
+    setIsChange(target);
+  };
 
   return (
     <div className="book-shelf-changer">
